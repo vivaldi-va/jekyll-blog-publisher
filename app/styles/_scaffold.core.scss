@@ -5,3 +5,16 @@
 	bottom: 0;
 	left: 0;
 }
+
+// wrapper to give padding to elements to add some whitespace
+.wrapper {
+	padding: 0 1em;
+	box-sizing: border-box;
+}
+
+// to wrap view content, i.e. the primary focus of the view, in some padding to separate it
+// from the header and footer and similarly give it whitespace
+.content {
+	@extend .wrapper;
+	padding: 1em;
+}

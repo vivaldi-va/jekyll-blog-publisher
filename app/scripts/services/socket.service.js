@@ -5,9 +5,15 @@
 
 angular.module('Moni.BlogEdit.Services')
 	.factory('SocketService', function(socketFactory) {
-		var _ioSocket = io('');
+		var _ioSocket = io('http://localhost:3010');
 		var socket = socketFactory({
-			ioSocket: ioSocket
+			ioSocket: _ioSocket
+		});
+
+		console.log(socket);
+
+		socket.on('connect', function() {
+			console.log('connected');
 		});
 
 		function syncUpdates(modelName, cb) {
@@ -17,9 +23,12 @@ angular.module('Moni.BlogEdit.Services')
 
 			});
 
-
 			socket.on(modelName + ':remove', function(item) {
 
+			});
+
+			socket.on(modelName + ':test', function(item) {
+				cb(item);
 			});
 		}
 

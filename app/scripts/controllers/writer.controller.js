@@ -8,9 +8,13 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('WriterCtrl', function ($scope, $log) {
+	.controller('WriterCtrl', function ($scope, $log, SocketService) {
 		$scope.postSource		= "";
 		$scope.postPreview		= "";
+
+		SocketService.sync('post', function(item) {
+			$log.debug('test came back in callback');
+		});
 
 		$scope.$watch('postSource', function(newValue, oldValue) {
 			if(!!newValue) {
