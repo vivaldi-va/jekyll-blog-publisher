@@ -3,8 +3,8 @@
 
 angular.module('Moni.BlogEdit.Config', ['ngRoute']);
 angular.module('Moni.BlogEdit.Controllers', []);
-angular.module('Moni.BlogEdit.Services', []);
-angular.module('Moni.BlogEdit.Directives', []);
+angular.module('Moni.BlogEdit.Services', ['ngResource', 'btford.socket-io']);
+angular.module('Moni.BlogEdit.Directives', ['ngSanitize']);
 angular.module('Moni.BlogEdit.Filters', []);
 
 /**

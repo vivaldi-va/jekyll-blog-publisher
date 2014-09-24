@@ -4,3 +4,7 @@ dist
 .sass-cache
 bower_components
 .idea
+
+app/**/*.css
+
+**/*.log

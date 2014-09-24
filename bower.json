@@ -5,10 +5,12 @@
     "angular": "~1.2.0",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
-    "bootstrap-sass-official": "~3.2.0",
     "angular-route": "~1.2.0",
     "marked": "~0.3.2",
-    "normalize-scss": "~3.0.1"
+    "normalize-scss": "~3.0.1",
+    "angular-sanitize": "~1.2.25",
+    "angular-resource": "~1.2.25",
+    "angular-socket-io": "~0.6.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

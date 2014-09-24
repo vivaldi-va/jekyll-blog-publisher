@@ -6,12 +6,16 @@ angular.module('Moni.BlogEdit.Config')
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: '../../views/main.view.html',
+				templateUrl: 'views/main.view.html',
 				controller: 'MainCtrl'
 			})
-			.when('/about', {
-				templateUrl: 'views/about.html',
-				controller: 'AboutCtrl'
+			.when('/write/:id', {
+				templateUrl: 'views/writer.view.html',
+				controller: 'WriterCtrl'
+			})
+			.when('/write', {
+				templateUrl: 'views/writer.view.html',
+				controller: 'WriterCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'

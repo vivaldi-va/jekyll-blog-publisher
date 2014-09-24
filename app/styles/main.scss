@@ -1,6 +1,11 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "normalize-scss/_normalize.scss";
+@import "../bower_components/normalize-scss/_normalize.scss";
 // endbower
 
+
+@import "variables.core";
+@import "typography.core";
+@import "scaffold.core";
+
+@import "header.block";
+@import "editor.block";

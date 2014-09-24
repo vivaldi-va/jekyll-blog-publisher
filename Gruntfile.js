@@ -66,7 +66,7 @@ module.exports = function (grunt) {
 		// The actual grunt server settings
 		connect: {
 			options: {
-				port: 9000,
+				port: 9010,
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
 				livereload: 35729
@@ -185,7 +185,7 @@ module.exports = function (grunt) {
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
 				fontsDir: '<%= yeoman.app %>/styles/fonts',
-				importPath: './bower_components',
+				importPath: '<%= yeoman.app %>/bower_components',
 				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '/styles/fonts',
@@ -201,6 +201,11 @@ module.exports = function (grunt) {
 			server: {
 				options: {
 					debugInfo: true
+				}
+			},
+			dev: {
+				options: {
+					cssDir: '<%= yeoman.app %>/styles'
 				}
 			}
 		},
@@ -443,6 +448,10 @@ module.exports = function (grunt) {
 		'filerev',
 		'usemin',
 		'htmlmin'
+	]);
+
+	grunt.registerTask('css', [
+		'compass:dev'
 	]);
 
 	grunt.registerTask('default', [

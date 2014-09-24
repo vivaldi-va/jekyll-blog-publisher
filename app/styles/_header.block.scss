@@ -1,0 +1,22 @@
+.header {
+	$height: 40px;
+
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: $height;
+	padding: 0 1em;
+	background: $color-black;
+	color: $color-white;
+
+
+	&__appTitle {
+		margin: 0;
+		font: {
+			size: 1.5em;
+			weight: 600;
+		}
+		line-height: $height;
+
+	}
+}
