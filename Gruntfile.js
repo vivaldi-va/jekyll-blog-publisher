@@ -29,37 +29,43 @@ module.exports = function (grunt) {
 
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
-			bower: {
+			/*bower: {
 				files: ['bower.json'],
 				tasks: ['wiredep']
 			},
 			js: {
-				files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+				files: ['<%= yeoman.app %>/scripts/{,*//*}*.js'],
 				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
 				}
 			},
 			jsTest: {
-				files: ['test/spec/{,*/}*.js'],
+				files: ['test/spec/{,*//*}*.js'],
 				tasks: ['newer:jshint:test', 'karma']
 			},
 			compass: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+				files: ['<%= yeoman.app %>/styles/{,*//*}*.{scss,sass}'],
 				tasks: ['compass:server', 'autoprefixer']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
-			},
-			livereload: {
-				options: {
-					livereload: '<%= connect.options.livereload %>'
-				},
-				files: [
-					'<%= yeoman.app %>/**/*.html',
-					'.tmp/styles/{,*/}*.css',
-					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-				]
+			},*/
+
+//			livereload: {
+//				options: {
+//					livereload: '<%= connect.options.livereload %>'
+//				},
+//				files: [
+//					'<%= yeoman.app %>/**/*.html',
+//					'.tmp/styles/{,*/}*.css',
+//					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+//				]
+//			}
+
+			sass: {
+				files: ['<%= yeoman.app %>/styles/**/*.scss'],
+				tasks: ['sass:watch', 'autoprefixer:watch']
 			}
 		},
 
@@ -159,6 +165,16 @@ module.exports = function (grunt) {
 						cwd: '.tmp/styles/',
 						src: '{,*/}*.css',
 						dest: '.tmp/styles/'
+					}
+				]
+			},
+			watch: {
+				files: [
+					{
+						expand: true,
+						cwd: '.tmp/styles/',
+						src: '{,*/}*.css',
+						dest: '<%= yeoman.app %>/styles'
 					}
 				]
 			}
@@ -405,6 +421,17 @@ module.exports = function (grunt) {
 				configFile: 'test/karma.conf.js',
 				singleRun: true
 			}
+		},
+
+		sass: {
+			watch: {
+				options: {
+					style: 'expanded'
+				},
+				files: {
+					'.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
+				}
+			}
 		}
 	});
 
@@ -453,6 +480,12 @@ module.exports = function (grunt) {
 	grunt.registerTask('css', [
 		'compass:dev'
 	]);
+
+
+
+	grunt.event.on('watch', function(action, filepath, target) {
+		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+	});
 
 	grunt.registerTask('default', [
 		'newer:jshint',
