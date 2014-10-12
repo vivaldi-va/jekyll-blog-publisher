@@ -4,6 +4,11 @@
 
 
 angular.module('Moni.BlogEdit.Controllers')
-.controller('HeaderCtrl', function($scope) {
+.controller('HeaderCtrl', function($scope, $location, WriterService) {
+
+		$scope.newPost = function() {
+			WriterService.newPost();
+			$location.path('/write');
+		};
 
 });

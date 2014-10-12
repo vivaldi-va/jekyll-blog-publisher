@@ -8,16 +8,18 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('MainCtrl', function ($scope, $log) {
-		$scope.postSource		= "";
-		$scope.postPreview		= "";
-
-		$scope.$watch('postSource', function(newValue, oldValue) {
-			if(!!newValue) {
-				var preview = marked(newValue);
-				$log.debug(preview);
-				$log.debug(oldValue);
-				$scope.postPreview = preview;
+	.controller('MainCtrl', function ($scope, $log, localStorageService, WriterService) {
+		$scope.post = {
+			name: "a post name to test with",
+			meta: {
+				contributors: [
+					{name: "some contributor"},
+					{name: "another contributor"}
+				]
 			}
-		});
+		};
+
+
+
+
 	});

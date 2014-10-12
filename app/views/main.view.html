@@ -2,9 +2,28 @@
 <div class="window">
 	<div ng-include="'views/partials/nav.view.partial.html'"></div>
 
-	<div class="content">
+	<div class="content content-flex">
 
+		<div class="col-xs-6">
+			<div class="postList__wrapper">
+				<div class="postListItem postListItem__newButton">
 
+				</div>
+				<div class="postListItem postList__post">
+					<div class="postListItem__statusIndicator"></div>
+					<div class="postListItem__contentWrapper">
+						<div class="postListItem__name">{{ post.name }}</div>
+						<div class="postListItem__meta">
+							<span class="postListItem__contributor" ng-repeat="postContributor in post.meta.contributors">
+								{{ postContributor.name }}
+							</span>
+							<div class="postListItem__edited"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
 
 	</div>
 </div>

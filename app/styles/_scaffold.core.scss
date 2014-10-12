@@ -8,6 +8,8 @@
 
 // wrapper to give padding to elements to add some whitespace
 .wrapper {
+	float: left;
+	width: 100%;
 	padding: 0 1em;
 	box-sizing: border-box;
 }
@@ -16,5 +18,11 @@
 // from the header and footer and similarly give it whitespace
 .content {
 	@extend .wrapper;
-	padding: 1em;
+	height: 100%;
+	padding-top: 40px;
+	padding-bottom: 1em;
+	
+	&-flex {
+		display: flex;
+	}
 }
