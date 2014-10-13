@@ -15,11 +15,13 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.postPreview		= "";
 
 
-
 		WriterService.getPost(_id, function(post) {
 			$scope.post = post;
 			$log.debug('Init post', $scope.post);
 		});
+
+
+
 
 		Mousetrap.bind('mod+s', function(e) {
 			e.preventDefault();
@@ -30,9 +32,15 @@ angular.module('Moni.BlogEdit.Controllers')
 			WriterService.savePost($scope.post, true);
 		});
 
+
+
+
 		SocketService.sync('post', function(event, msg) {
 			$log.debug(event, msg);
 		});
+
+
+
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {
 			if(!!newValue) {

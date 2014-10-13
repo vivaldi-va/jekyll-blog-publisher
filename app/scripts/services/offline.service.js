@@ -46,13 +46,18 @@ angular.module('Moni.BlogEdit.Services')
 					console.log(JSON.parse(localStorage.getItem(key)));
 					cb(null, JSON.parse(localStorage.getItem(key)));
 				} else {
-					cb(new Error("Can't find an entry for " + key));
+					cb(null, false);
 				}
 			}
 		}
 
+		function createSyncKey() {
+			return CryptoJS.MD5(new Date().getTime().toString()).toString();
+		}
+
 		return {
 			upsert: upsert,
-			find: find
+			find: find,
+			createKey: createSyncKey
 		}
 	});

@@ -6,12 +6,10 @@
 angular.module('Moni.BlogEdit.Services')
 	.factory('WriterService', function($resource, $log, localStorageService, SocketService, OfflineService) {
 
-		var ACTIVE_POST_KEY = "Moni.BlogEdit.ActivePost";
+		var POST_NAMESPACE	= "Moni.BlogEdit";
+		var ACTIVE_POST_KEY	= POST_NAMESPACE + ".ActivePost";
 
-		var postTemplate = {
-			title: "untitled",
-			text: ""
-		};
+
 
 		var crud = $resource('/api/posts/:id', { id: '@_id' }, {
 			update: {
@@ -20,15 +18,37 @@ angular.module('Moni.BlogEdit.Services')
 		});
 
 		function newPost() {
+			var postTemplate = {
+				title: "untitled",
+				text: "",
+				checksum: OfflineService.createKey()
+			};
+
 			OfflineService.upsert(ACTIVE_POST_KEY, postTemplate);
+			return postTemplate;
 		}
 
+
+		/**
+		 * get a post by it's id. If no ID is defined then return the
+		 * active post. if no active post is defined then create a new
+		 * blank post and return that instead.
+		 *
+		 * @param id
+		 * @param cb
+		 */
 		function getPost(id, cb) {
 			id = id || ACTIVE_POST_KEY;
 
 			OfflineService.find(ACTIVE_POST_KEY, function(err, post) {
+
 				console.log(post);
-				cb(post);
+
+				if(!!post) {
+					cb(post);
+				} else {
+					cb(newPost());
+				}
 			});
 		}
 
@@ -45,6 +65,11 @@ angular.module('Moni.BlogEdit.Services')
 
 			if(!!saveToServer) {
 				$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
+
+				if(!post._id) {
+					post.checksum = OfflineService.createKey();
+				}
+
 				SocketService.sendEvent('post', 'save', null, post);
 			}
 
