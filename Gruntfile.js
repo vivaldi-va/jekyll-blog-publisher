@@ -432,6 +432,16 @@ module.exports = function (grunt) {
 					'.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
 				}
 			}
+		},
+		mochaTest: {
+			specs: {
+				options: {
+					ui: 'bdd',
+					reporter: 'spec',
+					require: ['./test/helpers/chai']
+				},
+				src: ['./lib/**/*.spec.js']
+			}
 		}
 	});
 
@@ -451,14 +461,34 @@ module.exports = function (grunt) {
 		]);
 	});
 
+	grunt.registerTask('test', function (target) {
+		if (target === 'server') {
+			return grunt.task.run([
+				//'env:test',
+				'mochaTest'
+			]);
+		}
 
-	grunt.registerTask('test', [
+		else if (target === 'client') {
+			return grunt.task.run([
+				'clean:server',
+				'concurrent:test',
+				'autoprefixer',
+				'karma'
+			]);
+		} else grunt.task.run([
+			'test:server',
+			'test:client'
+		]);
+	});
+
+	/*grunt.registerTask('test', [
 		'clean:server',
 		'concurrent:test',
 		'autoprefixer',
 		'connect:test',
 		'karma'
-	]);
+	]);*/
 
 	grunt.registerTask('build', [
 		'clean:dist',

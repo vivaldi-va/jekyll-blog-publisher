@@ -3,7 +3,7 @@
  */
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('OfflineService', function() {
+	.factory('OfflineService', function($log) {
 
 
 		/**
@@ -46,6 +46,7 @@ angular.module('Moni.BlogEdit.Services')
 					console.log(JSON.parse(localStorage.getItem(key)));
 					cb(null, JSON.parse(localStorage.getItem(key)));
 				} else {
+					$log.debug("no active post found, creating new one");
 					cb(null, false);
 				}
 			}

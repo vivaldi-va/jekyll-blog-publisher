@@ -43,7 +43,9 @@ angular.module('Moni.BlogEdit.Services')
 			$log.debug("Moni.BlogEdit.Services.SocketService.sendEvent()", nameSpace + '::' + method);
 
 			var event;
-			targetId = targetId || null;
+			targetId	= targetId || null;
+			data		= data || null;
+
 			if(!!targetId) {
 				event = nameSpace + '::' + targetId + '::' + method;
 			} else {
