@@ -12,11 +12,13 @@
     "express": "^4.9.4",
     "joi": "^4.7.0",
     "jsonwebtoken": "^1.1.2",
+    "lodash": "^2.4.1",
     "log4js": "^0.6.21",
     "method-override": "^2.2.0",
     "mkdirp": "^0.5.0",
     "mongoose": "^3.8.16",
-    "socket.io": "^1.1.0"
+    "socket.io": "^1.1.0",
+    "socket.io-client": "^1.2.1"
   },
   "devDependencies": {
     "chai": "^1.9.2",
