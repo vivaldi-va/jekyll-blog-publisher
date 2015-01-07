@@ -4,11 +4,13 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('WriterService', function($resource, $log, localStorageService, SocketService, PostsService, OfflineService) {
+	.factory('WriterService', function($location, $resource, $log, $http, localStorageService, SocketService, PostsService, OfflineService) {
+
+		"use strict";
 
 		var POST_NAMESPACE	= "Moni.BlogEdit";
 		var ACTIVE_POST_KEY	= POST_NAMESPACE + ".ActivePost";
-
+		var socket = SocketService.socket;
 
 
 		var crud = $resource('/api/post/:id', { id: '@_id' }, {
@@ -17,24 +19,21 @@ angular.module('Moni.BlogEdit.Services')
 			}
 		});
 
-		function Post(post) {
-			this.body = post ||  {
-				title: "untitled",
-				text: ""
-			};
+		function Post() {
+			this.title = "untitled";
+			this.text = ""
 		}
 
-		function newPost() {
+		function newPost(cb) {
 			$log.debug("Services.WriterService.newPost()");
-			var postTemplate = {
-				title: "untitled",
-				text: ""
-			};
 
-			var post = new Post(postTemplate);
+			var post = new Post();
 
-			OfflineService.upsert(ACTIVE_POST_KEY, post.body);
-			return post.body;
+			$log.debug("new post", post);
+
+			OfflineService.upsert(ACTIVE_POST_KEY, post, function() {
+				cb(post);
+			});
 		}
 
 
@@ -47,50 +46,94 @@ angular.module('Moni.BlogEdit.Services')
 		 * @param cb
 		 */
 		function getPost(id, cb) {
-			id = id || ACTIVE_POST_KEY;
+			//id = id || ACTIVE_POST_KEY;
 
-			//SocketService.sendEvent('post', 'fetch', id);
+			if(id) {
+				OfflineService.find(id, function(err, post) {
+					$log.debug("fetching active post", post);
+					cb(post);
+				});
 
-			OfflineService.find(ACTIVE_POST_KEY, function(err, post) {
+				$http({
+					url: '/api/post/' + id,
+					method: 'get'
+				})
+					.success(function(data) {
+						cb(data.data);
+					});
+
+			} else {
+				newPost(function(post) {
+					cb(post);
+				});
+
+			}
+
+			OfflineService.find(id, function(err, post) {
 
 				$log.debug("fetching active post", post);
 
 				if(!!post) {
 					cb(post);
-				} else {
-					cb(newPost());
 				}
 			});
 		}
 
-		function savePost(post, saveToServer, cb) {
-			saveToServer	= saveToServer || false;
-			cb				= cb || angular.noop;
+		function createPost(post, cb) {
+			"use strict";
+			socket.emit('post::create', post);
+			socket.on('post::create', function(msg) {
+				$location.path('/write/' + msg._id);
+			});
+		}
+
+		function cachePost(post, cb) {
+			cb = cb || angular.noop;
+			var id = post.id || ACTIVE_POST_KEY;
+
+			$log.debug("post cached in localstorage");
 
 			// save the current post in localstorage under the 'active post' key
-			OfflineService.upsert(ACTIVE_POST_KEY, post, function(err) {
+			OfflineService.upsert(id, post, function(err) {
 				if(err) {
 					$log.error('ERR', err);
 				}
 				cb(post);
 			});
+		}
 
-			if(!!saveToServer) {
-				$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
+		function savePost(post, cb) {
+			cb = cb || angular.noop;
 
-				//SocketService.sendEvent('post', 'save', null, post);
-				var postPromise = PostsService.create(post);
-				$log.info(postPromise);
-				return postPromise;
-			}
+			$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
 
+			socket.emit('post::save', post);
+
+		}
+
+		function syncPost(postId, cb) {
+			"use strict";
+
+			socket.emit('post::updated', function(msg) {
+				if(msg.error) {
+					$log.error(msg.error);
+				} else {
+
+					if(postId === msg._id) {
+						cb(msg);
+					}
+				}
+			});
 		}
 
 		return {
 			resource: crud,
 			newPost: newPost,
 			getPost: getPost,
-			savePost: savePost
+			createPost: createPost,
+			savePost: savePost,
+			syncPost: syncPost,
+			cachePost: cachePost
 		};
 
 	});

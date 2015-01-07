@@ -15,42 +15,35 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.postPreview		= "";
 
 
+		/*if(!!_id) {
+
+		} else {
+			WriterService.cachePost()
+		}*/
+
 		WriterService.getPost(_id, function(post) {
 			$scope.post = post;
 			$log.debug('Init post', $scope.post);
 		});
 
+		if(!!_id) {
+			WriterService.syncPost(_id, function(post) {
+				$scope.post = post;
 
-		/*SocketService.sync('post', function(event, msg) {
-			$log.debug(event, msg);
-			if(!!_id) {
-				if(msg.data._id === _id) {
-					$scope.post = msg.data;
-				}
-			} else {
-				if($scope.post.checksum === msg.data.checksum) {
-					$scope.post = msg.data;
-				}
-			}
-			$scope.post = msg.data;
-		});*/
-
+			});
+		}
 
 		Mousetrap.bind('mod+s', function(e) {
 			e.preventDefault();
 
 			$log.debug('ctrl+s');
 
-			//SocketService.
-			WriterService.savePost($scope.post, true)
-				.then(function success(success) {
-					$log.debug(success);
-					$scope.post = success.data;
-					WriterService.savePost($scope.post, false);
-				},
-				function(reason) {
-					$log.error(reason);
-				});
+			if(!_id) {
+				WriterService.createPost($scope.post);
+			} else {
+				WriterService.cachePost($scope.post);
+				WriterService.savePost($scope.post);
+			}
 		});
 
 
@@ -74,9 +67,7 @@ angular.module('Moni.BlogEdit.Controllers')
 				$log.debug('Current post state', $scope.post);
 				//WriterService.savePost($scope.post, false);
 				_autoSaveTimeout = $timeout(function() {
-					WriterService.savePost($scope.post, function(post) {
-						$scope.post = post;
-					});
+					WriterService.cachePost($scope.post);
 				}, 1000);
 			}
 		});
