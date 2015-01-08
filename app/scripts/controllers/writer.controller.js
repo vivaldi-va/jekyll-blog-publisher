@@ -14,13 +14,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.postSource		= "";
 		$scope.postPreview		= "";
 
-
-		/*if(!!_id) {
-
-		} else {
-			WriterService.cachePost()
-		}*/
-
 		WriterService.getPost(_id, function(post) {
 			$scope.post = post;
 			$log.debug('Init post', $scope.post);
@@ -29,7 +22,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		if(!!_id) {
 			WriterService.syncPost(_id, function(post) {
 				$scope.post = post;
-
 			});
 		}
 
