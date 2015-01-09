@@ -81,8 +81,8 @@ angular.module('Moni.BlogEdit.Services')
 
 		function createPost(post, cb) {
 			"use strict";
-			socket.emit('post::create', post);
-			socket.on('post::create', function(msg) {
+			SocketService.emit('post::create', post);
+			SocketService.on('post::create', function(msg) {
 				$location.path('/write/' + msg._id);
 			});
 		}
@@ -107,14 +107,14 @@ angular.module('Moni.BlogEdit.Services')
 
 			$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
 
-			socket.emit('post::save', post);
+			SocketService.emit('post::save', post);
 
 		}
 
 		function syncPost(postId, cb) {
 			"use strict";
 
-			socket.emit('post::updated', function(msg) {
+			SocketService.emit('post::updated', function(msg) {
 				if(msg.error) {
 					$log.error(msg.error);
 				} else {

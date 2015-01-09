@@ -4,68 +4,65 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('SocketService', function($log, socketFactory) {
-		var _ioSocket = io('http://localhost:3010');
-		var socket = socketFactory({
-			ioSocket: _ioSocket
-		});
+	.factory('SocketService', function($rootScope, $log, $interval, socketFactory) {
 
 
-		socket.on('connect', function() {
-			$log.debug('socket connected');
-		});
-
-		function syncUpdates(modelName, cb) {
-			cb = cb || angular.noop;
-
-			socket.on(modelName + '::save', function(msg) {
-				var event = modelName + '::save';
-				cb(event, msg);
-			});
-
-			socket.on(modelName + '::remove', function(msg) {
-				var event = modelName + '::remove';
-				cb(event, msg);
-			});
-		}
+		var socket;
+		$rootScope.socket = socket = null;
 
 
-		/**
-		 * Send an socket message using a standard format.
-		 *
-		 * @param nameSpace - the namespace of the event, e.g. post, user
-		 * @param method - the method to use, e.g. update, create, remove
-		 * @param targetId - the id of the object to modify in the database, if applicable
-		 * @param data - the JSON data payload to send, if applicable
-		 */
-		function sendEvent(nameSpace, method, targetId, data) {
+		function _heartBeat() {
+			"use strict";
+			if(socket.connected) {
 
-			$log.debug("Moni.BlogEdit.Services.SocketService.sendEvent()", nameSpace + '::' + method);
+				$interval(function() {
 
-			var event;
-			targetId	= targetId || null;
-			data		= data || null;
+					if(!socket) {
+						connect($rootScope.token);
+					}
 
-			if(!!targetId) {
-				event = nameSpace + '::' + targetId + '::' + method;
-			} else {
-				event = nameSpace + '::' + method;
+					if(socket.disconnected) {
+						connect($rootScope.token);
+					}
+
+				}, 1000);
+
 			}
-
-			var eventObject = {
-				event_id: null,
-				event: event,
-				data: data,
-				timestamp: new Date()
-			};
-
-			socket.emit(event, eventObject);
 		}
+
+		function connect(token) {
+			$log.debug("Socket connecting");
+			"use strict";
+
+			socket = io({ query: "token=" + token });
+
+
+			socket.on('connect', function() {
+				$log.debug('socket connected');
+				_heartBeat();
+			});
+		}
+
+		function emit(event, msg) {
+			"use strict";
+			socket.emit(event, msg);
+		}
+
+		function on(event, cb) {
+			"use strict";
+			socket.on(event, cb);
+		}
+
+
+		/*$rootScope.$watch('token', function(newVal) {
+			connect(newVal);
+		});*/
 
 
 		return {
 			socket: socket,
-			sync: syncUpdates,
-			sendEvent: sendEvent
+			connect: connect,
+			emit: emit,
+			on: on
 		};
 	});

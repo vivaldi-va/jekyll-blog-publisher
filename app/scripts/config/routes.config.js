@@ -17,6 +17,10 @@ angular.module('Moni.BlogEdit.Config')
 				templateUrl: 'views/writer.view.html',
 				controller: 'WriterCtrl'
 			})
+			.when('/login', {
+				templateUrl: 'views/login.view.html',
+				controller: 'LoginCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

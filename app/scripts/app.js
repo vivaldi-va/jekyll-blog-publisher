@@ -17,10 +17,29 @@ angular.module('Moni.BlogEdit.Config', ['ngRoute']);
  */
 angular
 	.module('Moni.BlogEdit', [
+		'ngCookies',
 		'Moni.BlogEdit.Controllers',
 		'Moni.BlogEdit.Services',
 		'Moni.BlogEdit.Directives',
 		'Moni.BlogEdit.Filters',
 		'Moni.BlogEdit.Config'
-	]);
+	])
+	.run(function($rootScope, $location, $log, UserService, SocketService) {
+		UserService.checkSession()
+			.then(function(data) {
+				$log.debug("Session success", data.data.data.token); // i dont even...
+				$rootScope.token = data.data.data.token;
+				SocketService.connect(data.data.data.token);
+				$location.path('/');
+
+			}, function(data, status) {
+				$log.warn('Session check failed, log back in');
+				$location.path('/login');
+			});
+	})
+	.run(function($rootScope, $log) {
+		$rootScope.$watch('socket', function(newVal) {
+			$log.debug("socket changed: ", newVal);
+		});
+	});
 
