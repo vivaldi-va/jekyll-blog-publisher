@@ -17,7 +17,7 @@ var log		= require('log4js').getLogger('test::util');
 // this is helpful when you would like to change behavior when testing
 process.env.NODE_ENV = 'test';
 
-beforeEach(function (done) {
+before(function (done) {
 
 
 	function reconnect() {
