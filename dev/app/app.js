@@ -5,7 +5,7 @@ angular.module('Moni.BlogEdit.Controllers', []);
 angular.module('Moni.BlogEdit.Services', ['ngResource', 'btford.socket-io', 'LocalStorageModule']);
 angular.module('Moni.BlogEdit.Directives', ['ngSanitize']);
 angular.module('Moni.BlogEdit.Filters', []);
-angular.module('Moni.BlogEdit.Config', ['ngRoute']);
+angular.module('Moni.BlogEdit.Config', []);
 
 /**
  * @ngdoc overview
@@ -18,6 +18,7 @@ angular.module('Moni.BlogEdit.Config', ['ngRoute']);
 angular
 	.module('Moni.BlogEdit', [
 		'ngCookies',
+		'ngRoute',
 		'Moni.BlogEdit.Controllers',
 		'Moni.BlogEdit.Services',
 		'Moni.BlogEdit.Directives',
@@ -30,7 +31,6 @@ angular
 				$log.debug("Session success", data.data.data.token); // i dont even...
 				$rootScope.token = data.data.data.token;
 				SocketService.connect(data.data.data.token);
-				$location.path('/');
 
 			}, function(data, status) {
 				$log.warn('Session check failed, log back in');
