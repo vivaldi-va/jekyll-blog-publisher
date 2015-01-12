@@ -8,8 +8,8 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('MainCtrl', function ($scope, $log, localStorageService, WriterService) {
-		$scope.post = {
+	.controller('PostListCtrl', function ($scope, $log, $location, PostsService, WriterService) {
+		/*$scope.post = {
 			name: "a post name to test with",
 			meta: {
 				contributors: [
@@ -17,8 +17,18 @@ angular.module('Moni.BlogEdit.Controllers')
 					{name: "another contributor"}
 				]
 			}
+		};*/
+
+		$scope.posts = null;
+
+		$scope.goto = function(post) {
+			$location.path('/write/' + post._id);
 		};
 
+		PostsService.getPosts()
+			.then(function(data) {
+				$scope.posts = data.data.data;
+			});
 
 
 

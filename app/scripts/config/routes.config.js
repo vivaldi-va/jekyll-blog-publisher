@@ -6,8 +6,8 @@ angular.module('Moni.BlogEdit.Config')
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: 'views/main.view.html',
-				controller: 'MainCtrl'
+				templateUrl: 'views/post-list.view.html',
+				controller: 'PostListCtrl'
 			})
 			.when('/write/:id', {
 				templateUrl: 'views/writer.view.html',

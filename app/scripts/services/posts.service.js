@@ -4,7 +4,7 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('PostsService', function($http, $q, $log) {
+	.factory('PostsService', function($http, $rootScope, $q, $log) {
 
 		function createPost(post) {
 
@@ -27,7 +27,27 @@ angular.module('Moni.BlogEdit.Services')
 			return dfd.promise;
 		}
 
+		function getPosts() {
+			"use strict";
+			return $http({
+				url: '/api/post',
+				method: 'get',
+				headers: {'Authorization': $rootScope.token}
+			});
+		}
+
+		function getPostById(id) {
+			"use strict";
+			return $http({
+				url: '/api/post/' + id,
+				method: 'get',
+				headers: {'Authorization': $rootScope.token}
+			});
+		}
+
 		return {
-			create: createPost
+			create: createPost,
+			getPosts: getPosts,
+			getPostById: getPostById
 		};
 	});

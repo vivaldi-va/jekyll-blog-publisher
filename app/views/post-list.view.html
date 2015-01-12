@@ -9,13 +9,15 @@
 				<div class="postListItem postListItem__newButton">
 
 				</div>
-				<div class="postListItem postList__post">
-					<div class="postListItem__statusIndicator"></div>
+				<div class="postListItem postList__post" ng-repeat="post in posts" ng-click="goto(post)">
 					<div class="postListItem__contentWrapper">
-						<div class="postListItem__name">{{ post.name }}</div>
+						<div class="postListItem__name">{{ post.title }}</div>
 						<div class="postListItem__meta">
+							<span class="postListItem__contributor">
+								{{ post.meta.author.name.first }} {{ post.meta.author.name.last }}
+							</span>
 							<span class="postListItem__contributor" ng-repeat="postContributor in post.meta.contributors">
-								{{ postContributor.name }}
+								{{ postContributor.name.first }} {{ postContributor.name.last }}
 							</span>
 							<div class="postListItem__edited"></div>
 						</div>

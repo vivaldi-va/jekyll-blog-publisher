@@ -9,7 +9,25 @@
 	</div>
 
 	<div class="editor">
-		<textarea class="editor__source mousetrap" id="edit-source" ng-model="post.text"></textarea>
+		<div class="editor__source">
+			<div class="editor__toolbar">
+
+				<span class="editor__postTitle" ng-hide="editTitleActive">{{ post.title }}</span>
+				<form class="editor__editPostTitle" ng-submit="saveTitleEdit()" ng-show="editTitleActive">
+					<input type="text" placeholder="Give the post a title" ng-model="post.title">
+					<button type="button" ng-click="cancelTitleEdit()"><i class="fa fa-close"></i></button>
+					<button type="submit">Save</button>
+				</form>
+
+				<div class="editor__toolbarInteraction">
+					<button><i class="fa fa-gear"></i></button>
+					<button><i class="fa fa-font"></i></button>
+					<button><i class="fa fa-expand"></i></button>
+				</div>
+
+			</div>
+			<textarea class="editor__sourceInput mousetrap" id="edit-source" ng-model="post.text"></textarea>
+		</div>
 
 		<div class="editor__preview" ng-bind-html="postPreview"></div>
 	</div>

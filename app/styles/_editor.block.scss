@@ -3,11 +3,14 @@
 	float: left;
 	width: 50%;
 	height: 100%;
-	padding: 1em;
 	font: {
-		size: 1.5em;
+		size: 1.25em;
 	}
 	box-sizing: border-box;
+
+	&.full-screen {
+		width: 100%;
+	}
 }
 
 
@@ -17,23 +20,50 @@
 	padding: 40px 0 0;
 	box-sizing: border-box;
 
+	&__toolbar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding: 0 1em;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__postTitle {
+		font-size: 1.5rem;
+		color: $color-white;
+	}
 
 	&__source {
 		@extend %editor-pane;
-		background: #4f4f4f;
-		border: none;
+		position: relative;
+		background: $color-black-03;
 		font: {
 			family: 'merriweather', georgia, serif;
 			weight: 300;
 		}
-		color: #ccc;
+		color: $color-black-07;
+	}
+
+	&__sourceInput {
+		padding: 40px 1em 1em;
+		width: 100%;
+		height: 100%;
+		background: transparent;
+		border: none;
 		outline: none;
 		resize: none;
+		box-sizing: border-box;
 	}
 
 	&__preview {
 		@extend %editor-pane;
-		background: #f7f7f7;
+
+		padding: 1em;
+		overflow-y: auto;
+		background: $color-black-10;
 		font: {
 			family: inherit;
 		}

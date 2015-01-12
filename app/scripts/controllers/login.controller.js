@@ -12,7 +12,7 @@ angular.module('Moni.BlogEdit')
 				password: $scope.password
 			})
 				.then(function(data) {
-					$location.path('/write');
+					$location.path('/');
 				});
 		}
 

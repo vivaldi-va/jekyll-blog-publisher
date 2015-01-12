@@ -14,9 +14,10 @@ angular.module('Moni.BlogEdit')
 				data: user
 			})
 				.then(function(data) {
-					$rootScope.token = data.token;
+					console.log(data);
+					$rootScope.token = data.data.data.token;
 
-					SocketService.connect();
+					SocketService.connect($rootScope.token);
 				});
 		}
 

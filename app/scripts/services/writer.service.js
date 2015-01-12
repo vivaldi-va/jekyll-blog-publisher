@@ -4,13 +4,12 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('WriterService', function($location, $resource, $log, $http, localStorageService, SocketService, PostsService, OfflineService) {
+	.factory('WriterService', function($rootScope, $location, $resource, $log, $http, localStorageService, SocketService, PostsService, OfflineService) {
 
 		"use strict";
 
 		var POST_NAMESPACE	= "Moni.BlogEdit";
 		var ACTIVE_POST_KEY	= POST_NAMESPACE + ".ActivePost";
-		var socket = SocketService.socket;
 
 
 		var crud = $resource('/api/post/:id', { id: '@_id' }, {
@@ -56,7 +55,8 @@ angular.module('Moni.BlogEdit.Services')
 
 				$http({
 					url: '/api/post/' + id,
-					method: 'get'
+					method: 'get',
+					headers: {'Authorization': $rootScope.token}
 				})
 					.success(function(data) {
 						cb(data.data);
