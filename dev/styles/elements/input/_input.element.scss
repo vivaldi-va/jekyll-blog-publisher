@@ -1,0 +1,35 @@
+
+.input {
+	width: 100%;
+	padding: 0.5em 0.75em;
+	border: 1px solid $color-black-08;
+	background: #fbfbfb;
+	border-radius: 3px;
+	box-sizing: border-box;
+	outline: none;
+	color: $color-black-03;
+	@include sans-serif();
+	font-size: 1.4rem;
+
+	&[disabled] {
+		background: $color-black-09;
+		cursor: not-allowed;
+	}
+
+	&:focus {
+		border-color: $color-blue-04;
+		box-shadow: 0 0 2px rgba($color-blue-04, 0.65) inset;
+	}
+
+	&:invalid {
+		border-color: $color-red-04;
+		box-shadow: none;
+		background-color: lighten($color-red-06, 5%);
+		color: $color-red-03;
+	}
+
+	/*&:valid {
+		border-color: $color-green-03;
+		box-shadow: 0 0 2px rgba($color-green-03, 0.65) inset;
+	}*/
+}

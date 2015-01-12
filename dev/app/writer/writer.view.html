@@ -3,8 +3,6 @@
 	<!--<div ng-include="'views/partials/nav.view.partial.html'"></div>-->
 
 	<div class="header writer__header">
-		<input class="writer__inputInline-postTitle" type="text" ng-model="post.title" placeholder="Give your post a title">
-
 		<div class="writer__lastUpdated">{{ post.attrs.modified[0].timestamp | date }}</div>
 	</div>
 
@@ -12,11 +10,11 @@
 		<div class="editor__source">
 			<div class="editor__toolbar">
 
-				<span class="editor__postTitle" ng-hide="editTitleActive">{{ post.title }}</span>
+				<span class="editor__postTitle" ng-hide="editTitleActive" ng-click="startTitleEdit()">{{ post.title }}</span>
 				<form class="editor__editPostTitle" ng-submit="saveTitleEdit()" ng-show="editTitleActive">
-					<input type="text" placeholder="Give the post a title" ng-model="post.title">
-					<button type="button" ng-click="cancelTitleEdit()"><i class="fa fa-close"></i></button>
-					<button type="submit">Save</button>
+					<input class="input" type="text" placeholder="Give the post a title" ng-model="post.title">
+					<button class="button button-inverse" type="button" ng-click="cancelTitleEdit()"><i class="fa fa-close"></i></button>
+					<button class="button button-blue" type="submit">Save</button>
 				</form>
 
 				<div class="editor__toolbarInteraction">

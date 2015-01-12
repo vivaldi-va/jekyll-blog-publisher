@@ -1,4 +1,7 @@
 
+
+$toolbar-height: 50px;
+
 %editor-pane {
 	float: left;
 	width: 50%;
@@ -25,14 +28,34 @@
 		top: 0;
 		left: 0;
 		width: 100%;
+		height: $toolbar-height;
 		padding: 0 1em;
+		background: $color-black-03;
+
+		border-bottom: 1px solid rgba($color-black-04, 0.5);
+
 		box-sizing: border-box;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__editPostTitle {
+		display: flex;
+		flex-grow: 1;
+		&>input {
+			flex-grow: 1;
+		}
+
+		&>button {
+			margin: 0 0 0 0.5em;
+			flex-shrink: 0;
+		}
+
 	}
 
 	&__postTitle {
-		font-size: 1.5rem;
+		font-size: 2.4rem;
 		color: $color-white;
 	}
 
@@ -48,7 +71,7 @@
 	}
 
 	&__sourceInput {
-		padding: 40px 1em 1em;
+		padding: $toolbar-height+10px 1em 1em;
 		width: 100%;
 		height: 100%;
 		background: transparent;

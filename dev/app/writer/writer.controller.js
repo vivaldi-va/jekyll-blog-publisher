@@ -13,6 +13,9 @@ angular.module('Moni.BlogEdit.Controllers')
 		var _autoSaveTimeout;
 		$scope.postSource		= "";
 		$scope.postPreview		= "";
+		$scope.editTitleActive	= false;
+		$scope.savedPostTitle	= null;
+
 
 		WriterService.getPost(_id, function(post) {
 			$scope.post = post;
@@ -24,6 +27,28 @@ angular.module('Moni.BlogEdit.Controllers')
 				$scope.post = post;
 			});
 		}
+
+
+
+		$scope.startTitleEdit = function() {
+			$scope.savedPostTitle	= angular.copy($scope.post.title);
+			$scope.editTitleActive = true;
+		};
+
+		$scope.cancelTitleEdit = function() {
+			$scope.post.title = $scope.savedPostTitle;
+			$scope.editTitleActive = false;
+		};
+
+		$scope.saveTitleEdit = function() {
+			$scope.savedPostTitle	= $scope.post.title;
+			WriterService.cachePost($scope.post);
+			WriterService.savePost($scope.post);
+
+			$scope.editTitleActive = false;
+		};
+
+
 
 		Mousetrap.bind('mod+s', function(e) {
 			e.preventDefault();
