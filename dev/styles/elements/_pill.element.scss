@@ -1,0 +1,33 @@
+.pill {
+	display: inline-block;
+	min-width: 1rem;
+	padding: 0.2em 0.5em;
+	font-size: 1rem;
+	text-align: center;
+	border-radius: 1rem;
+
+	&-default {
+		background: $color-black-05;
+		color: $color-white;
+	}
+
+	&-blue {
+		background: $color-blue-04;
+		color: $color-white;
+	}
+
+	&-green {
+		background: $color-green-03;
+		color: $color-white;
+	}
+
+	&-yellow {
+		background: $color-yellow-03;
+		color: $color-white;
+	}
+
+	&-red {
+		background: $color-red-03;
+		color: $color-white;
+	}
+}

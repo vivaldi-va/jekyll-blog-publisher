@@ -1,0 +1,79 @@
+.banner {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 32px;
+	padding: 0 1em;
+	border-radius: 0;
+
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	}
+
+	&:first-of-type {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+
+	}
+
+	& + &:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	&:last-of-type {
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.5);
+		&:after {
+			border: none;
+		}
+	}
+
+
+	&-blue {
+		background: $color-blue-03;
+		color: $color-white;
+		text-shadow: 0 1px $color-blue-02;
+	}
+
+	&-green {
+		background: $color-green-03;
+		color: $color-white;
+		text-shadow: 0 1px $color-green-02;
+	}
+
+	&-yellow {
+		background: $color-yellow-03;
+		color: $color-white;
+		text-shadow: 0 1px $color-yellow-02;
+	}
+
+	&-red {
+		background: $color-red-03;
+		color: $color-white;
+		text-shadow: 0 1px $color-red-02;
+	}
+
+	&__Body {
+		white-space: nowrap;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__Close {
+		background: transparent;
+		border: none;
+		color: rgba(0, 0, 0, 0.25);
+	}
+}

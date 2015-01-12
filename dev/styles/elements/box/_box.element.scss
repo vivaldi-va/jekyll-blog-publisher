@@ -1,0 +1,80 @@
+.box {
+	display: flex;
+	flex-direction: column;
+	background: $color-white;
+	border: 1px solid $color-black-08;
+	border-radius: 3px;
+
+
+	&__Title {
+		display: flex;
+		height: 30px;
+		padding: 0 1em;
+		border-bottom: 1px solid $color-black-09;
+		font-size: 1em;
+		color: $color-black-06;
+		text-transform: uppercase;
+
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__TitleSub {
+		color: $color-black-03;
+
+		&:before {
+			content: "\2022";
+			padding: 0 0.5em;
+		}
+	}
+
+	&__Content {
+		display: flex;
+		flex-grow: 1;
+		flex-direction: column;
+		padding: 0 0.5rem;
+		overflow-y: auto;
+
+		color: $color-black-04;
+
+		font: {
+			weight: 600;
+		}
+	}
+
+	&__DisplayContent {
+		font: {
+			size: 2.4rem;
+			weight: 700;
+		}
+		text-align: center;
+		line-height: 80px;
+		white-space: nowrap;
+	}
+
+	&__Item {
+		display: flex;
+		justify-content: space-between;
+		flex-shrink: 0;
+		padding: 0.5em 0;
+		border-bottom: 1px solid $color-black-09;
+
+		&-actions {
+			align-items: flex-end;
+			flex-grow: 1;
+		}
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+	}
+
+	&__ItemTitle {
+		font: {
+			weight: 400;
+		}
+		color: $color-black-05;
+		text-transform: capitalize;
+	}
+}

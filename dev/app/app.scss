@@ -1,6 +1,7 @@
 
 
 @import "../bower_components/normalize-scss/normalize";
+@import "../bower_components/font-awesome/scss/font-awesome";
 
 $color-white: #ffffff;
 
@@ -56,4 +57,9 @@ $color-yellow-06: #fff1cc;
 @import '../styles/_scaffold.core.scss';
 @import '../styles/_typography.core.scss';
 @import '../styles/_variables.core.scss';
+@import '../styles/elements/_label.element.scss';
+@import '../styles/elements/_pill.element.scss';
+@import '../styles/elements/banner/_banner.element.scss';
+@import '../styles/elements/box/_box.element.scss';
+@import '../styles/elements/button/_button.element.scss';
 // endinjector
