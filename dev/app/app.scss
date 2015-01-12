@@ -50,6 +50,7 @@ $color-yellow-05: #ffe6a6;
 $color-yellow-06: #fff1cc;
 
 // injector
+@import '../components/dropdown/_dropdown.component.scss';
 @import '../components/menu/_menu.component.scss';
 @import '../components/notifications/_notification.component.scss';
 @import '../styles/_editor.block.scss';
@@ -60,10 +61,12 @@ $color-yellow-06: #fff1cc;
 @import '../styles/_scaffold.core.scss';
 @import '../styles/_scrollbars.structure.scss';
 @import '../styles/_typography.core.scss';
+@import '../styles/drop/_drop.global.scss';
 @import '../styles/elements/_label.element.scss';
 @import '../styles/elements/_pill.element.scss';
 @import '../styles/elements/banner/_banner.element.scss';
 @import '../styles/elements/box/_box.element.scss';
 @import '../styles/elements/button/_button.element.scss';
+@import '../styles/elements/card/_card.element.scss';
 @import '../styles/elements/input/_input.element.scss';
 // endinjector

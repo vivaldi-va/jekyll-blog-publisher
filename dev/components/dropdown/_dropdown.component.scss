@@ -1,0 +1,76 @@
+$arrowSize: 8px;
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: scale3d(0.8, 0.8, 1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.dropdown {
+
+	position: relative;
+	width: 200px;
+	padding: 1em;
+	background: $color-black-10;
+	color: $color-black-04;
+	border-radius: 3px;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
+
+	animation-name: fade-in;
+	animation-duration: 0.075s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+
+
+	&__Wrapper {
+		display: inline-block;
+	}
+
+	&__Block {
+		& + & {
+			margin: 1em 0 0;
+			padding: 1em 0 0;
+			border-top: 1px solid $color-black-09;
+
+		}
+	}
+
+	&__BlockItem {
+		display: flex;
+		justify-content: space-between;
+		margin: 0.25rem 0;
+	}
+
+	&__BlockItemTitle {
+		padding: 0 2em 0 0;
+		font: {
+			weight: 600;
+		}
+		color: $color-black-06;
+		text-transform: capitalize;
+	}
+
+	&__Link {
+		cursor: pointer;
+		user-select: none;
+	}
+}
+
+
+
+.drop-element-attached-left {
+	.drop-content {
+		margin-left: $arrowSize;
+	}
+}
+
+.drop-element-attached-right {
+	.drop-content {
+		margin-right: $arrowSize;
+	}
+}

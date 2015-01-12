@@ -14,8 +14,19 @@
 				</form>
 
 				<div class="editor__ToolbarInteraction">
-					<button class="button button-clear"><i class="fa fa-gear"></i></button>
-					<button class="button button-clear"><i class="fa fa-font"></i></button>
+					<mo-dropdown>
+						<button class="button button-clear dropdown__Link"><i class="fa fa-gear"></i></button>
+						<div class="dropdown dropdown__Target">
+							some settings
+						</div>
+					</mo-dropdown>
+					<mo-dropdown>
+						<button class="button button-clear dropdown__Link"><i class="fa fa-font"></i></button>
+						<div class="dropdown dropdown__Target">
+							text-editor options
+						</div>
+					</mo-dropdown>
+
 					<button class="button button-clear"><i class="fa fa-expand"></i></button>
 				</div>
 
