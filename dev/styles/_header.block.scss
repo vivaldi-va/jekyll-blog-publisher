@@ -8,6 +8,10 @@
 	background: $color-black-02;
 	color: $color-white;
 
+	display: flex;
+	align-items: center;
+
+
 
 	&__appTitle {
 		float: left;

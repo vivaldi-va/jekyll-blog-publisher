@@ -42,5 +42,8 @@ angular
 		$rootScope.$watch('socket', function(newVal) {
 			$log.debug("socket changed: ", newVal);
 		});
+	})
+	.run(function($rootScope) {
+		$rootScope.menu = false;
 	});
 

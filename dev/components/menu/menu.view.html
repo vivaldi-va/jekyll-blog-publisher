@@ -1,0 +1,13 @@
+<div class="menu" ng-controller="MenuCtrl">
+
+	<div class="menu__Section">
+		<h2>posts</h2>
+
+		<div class="menu__SectionItem" ng-repeat="post in posts">
+			<span class="menu__PostTitle">{{ post.title }}</span>
+			<span class="label label-default menu__PostStatus">unpublished</span>
+		</div>
+	</div>
+
+
+</div>

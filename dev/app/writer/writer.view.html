@@ -1,32 +1,28 @@
-
-<div class="window">
-	<!--<div ng-include="'views/partials/nav.view.partial.html'"></div>-->
-
-	<div class="header writer__header">
-		<div class="writer__lastUpdated">{{ post.attrs.modified[0].timestamp | date }}</div>
-	</div>
+<div ng-include="'components/menu/menu.view.html'"></div>
+<div class="window" ng-class="{'menu-open': !!menu}">
+	<div ng-include="'views/partials/nav.view.partial.html'"></div>
 
 	<div class="editor">
-		<div class="editor__source">
-			<div class="editor__toolbar">
+		<div class="editor__Source">
+			<div class="editor__Toolbar">
 
-				<span class="editor__postTitle" ng-hide="editTitleActive" ng-click="startTitleEdit()">{{ post.title }}</span>
-				<form class="editor__editPostTitle" ng-submit="saveTitleEdit()" ng-show="editTitleActive">
+				<span class="editor__PostTitle" ng-hide="editTitleActive" ng-click="startTitleEdit()">{{ post.title }}</span>
+				<form class="editor__EditPostTitle" ng-submit="saveTitleEdit()" ng-show="editTitleActive">
 					<input class="input" type="text" placeholder="Give the post a title" ng-model="post.title">
 					<button class="button button-inverse" type="button" ng-click="cancelTitleEdit()"><i class="fa fa-close"></i></button>
 					<button class="button button-blue" type="submit">Save</button>
 				</form>
 
-				<div class="editor__toolbarInteraction">
+				<div class="editor__ToolbarInteraction">
 					<button class="button button-clear"><i class="fa fa-gear"></i></button>
 					<button class="button button-clear"><i class="fa fa-font"></i></button>
 					<button class="button button-clear"><i class="fa fa-expand"></i></button>
 				</div>
 
 			</div>
-			<textarea class="editor__sourceInput mousetrap" id="edit-source" ng-model="post.text"></textarea>
+			<textarea class="editor__SourceInput mousetrap" id="edit-source" ng-model="post.text"></textarea>
 		</div>
 
-		<div class="editor__preview" ng-bind-html="postPreview"></div>
+		<div class="editor__Preview" ng-bind-html="postPreview"></div>
 	</div>
 </div>

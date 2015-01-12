@@ -4,11 +4,11 @@
 
 
 angular.module('Moni.BlogEdit.Controllers')
-.controller('HeaderCtrl', function($scope, $location, WriterService) {
+.controller('HeaderCtrl', function($rootScope, $scope, $location, WriterService) {
 
-		$scope.newPost = function() {
-			WriterService.newPost();
-			$location.path('/write');
+		$scope.toggleMenu = function() {
+			"use strict";
+			$rootScope.menu = !$rootScope.menu;
 		};
 
 });
