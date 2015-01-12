@@ -2,11 +2,11 @@
  * Created by vivaldi on 23/09/2014.
  */
 
-angular.module('Moni.BlogEdit.Config')
+angular.module('Moni.BlogEdit')
 	.config(function ($routeProvider) {
-		$routeProvider
+		/*$routeProvider
 			.when('/', {
-				templateUrl: 'views/post-list.view.html',
+				templateUrl: 'post-list/post-list.view.html',
 				controller: 'PostListCtrl'
 			})
 			.when('/write/:id', {
@@ -18,10 +18,10 @@ angular.module('Moni.BlogEdit.Config')
 				controller: 'WriterCtrl'
 			})
 			.when('/login', {
-				templateUrl: 'views/login.view.html',
+				templateUrl: 'login/login.view.html',
 				controller: 'LoginCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'
-			});
+			});*/
 	});
