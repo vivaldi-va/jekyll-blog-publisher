@@ -24,18 +24,13 @@ module.exports = function (grunt) {
 				files: [
 					'<%= paths.dev %>/{app,components}/**/*.js',
 					'!<%= paths.dev %>/{app,components}/**/*.{spec,mock}.js',
-					'!<%= paths.dev %>/app/dev.js'],
+					'!<%= paths.dev %>/app/app.js'],
 				tasks: ['injector:scripts']
 			},
 			injectSass: {
 				files: [
 					'<%= paths.dev %>/{app,components,styles}/**/*.{scss,sass}'],
-				tasks: ['injector:sass']
-			},
-			sass: {
-				files: [
-					'<%= paths.dev %>/{app,components,styles}/**/*.{scss,sass}'],
-				tasks: ['sass', 'autoprefixer']
+				tasks: ['injector:sass', 'sass', 'autoprefixer']
 			},
 			injectBowerComponents: {
 				files: [
@@ -201,7 +196,7 @@ module.exports = function (grunt) {
 					'<%= paths.dev %>/index.html': [
 						[
 							'{.tmp,<%= paths.dev %>}/{app,components}/**/*.js',
-							'!{.tmp,<%= paths.dev %>}/app/dev.js',
+							'!{.tmp,<%= paths.dev %>}/app/app.js',
 							'!{.tmp,<%= paths.dev %>}/{app,components}/**/*.spec.js',
 							'!{.tmp,<%= paths.dev %>}/{app,components}/**/*.mock.js'
 						]
@@ -209,7 +204,7 @@ module.exports = function (grunt) {
 				}
 			},
 
-			// Inject component scss into dev.scss
+			// Inject component scss into app.scss
 			sass: {
 				options: {
 					transform: function (filePath) {
