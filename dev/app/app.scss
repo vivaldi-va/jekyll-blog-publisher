@@ -50,6 +50,7 @@ $color-yellow-05: #ffe6a6;
 $color-yellow-06: #fff1cc;
 
 // injector
+@import '../components/notifications/_notification.component.scss';
 @import '../styles/_editor.block.scss';
 @import '../styles/_font.mixin.scss';
 @import '../styles/_header.block.scss';

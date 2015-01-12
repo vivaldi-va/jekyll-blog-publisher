@@ -21,6 +21,9 @@
 <div ng-view=""></div>
 
 
+<div class="notification__Container" id="notification-container" ng-controller="NotificationCtrl" ng-show="notifications.length" ng-animate-children>
+	<mo-notification ng-repeat="notification in notifications" notification="notification"></mo-notification>
+</div>
 
 
 
@@ -36,6 +39,7 @@
 <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
 <script src="bower_components/mousetrap/mousetrap.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
 <!-- endbower -->
 <script src="bower_components/marked/lib/marked.js"></script>
 <script src="./scripts/lib/md5.crypto.lib.js"></script>
@@ -55,6 +59,8 @@
 <script src="app/writer/writer.config.js"></script>
 <script src="app/writer/writer.controller.js"></script>
 <script src="app/writer/writer.service.js"></script>
+<script src="components/notifications/notification.controller.js"></script>
+<script src="components/notifications/notification.directive.js"></script>
 <script src="components/offline/offline.service.js"></script>
 <script src="components/posts/posts.service.js"></script>
 <script src="components/socket/socket.service.js"></script>

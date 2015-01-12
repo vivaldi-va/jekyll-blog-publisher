@@ -8,7 +8,7 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('WriterCtrl', function ($scope, $log, $timeout, $routeParams, WriterService, SocketService) {
+	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $routeParams, WriterService, SocketService) {
 		var _id = $routeParams.id || false;
 		var _autoSaveTimeout;
 		$scope.postSource		= "";
@@ -57,9 +57,11 @@ angular.module('Moni.BlogEdit.Controllers')
 
 			if(!_id) {
 				WriterService.createPost($scope.post);
+				$rootScope.$broadcast('event::notification', {type: 'info', message: "New post created"});
 			} else {
 				WriterService.cachePost($scope.post);
 				WriterService.savePost($scope.post);
+				$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
 			}
 		});
 

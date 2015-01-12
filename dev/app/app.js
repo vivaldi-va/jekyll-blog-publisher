@@ -19,6 +19,7 @@ angular
 	.module('Moni.BlogEdit', [
 		'ngCookies',
 		'ngRoute',
+		'ngAnimate',
 		'Moni.BlogEdit.Controllers',
 		'Moni.BlogEdit.Services',
 		'Moni.BlogEdit.Directives',

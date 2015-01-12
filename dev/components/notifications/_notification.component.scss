@@ -1,0 +1,50 @@
+@keyframes notification-appear {
+	0% {
+		opacity: 0;
+		transform: translate3d(0, -3em, 0);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+@keyframes notification-leave {
+	0% {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate3d(0, 1.5em, 0);
+	}
+}
+
+.notification {
+	&__Container {
+		position: absolute;
+		top: 5px;
+		left: 50%;
+		z-index: 1001;
+		width: 300px;
+		margin: 0 0 0 -150px;
+	}
+
+	&__Item {
+		&.ng-enter {
+
+			animation-name: notification-appear;
+			animation-duration: 0.075s;
+			animation-iteration-count: 1;
+			animation-timing-function: ease-out;
+		}
+
+		&.ng-leave {
+			animation-name: notification-leave;
+			animation-duration: 0.075s;
+			animation-iteration-count: 1;
+			animation-timing-function: ease-out;
+		}
+	}
+}

@@ -1,0 +1,14 @@
+<div class="notification__Item banner"
+	 ng-class="{
+	 	'banner-red': notification.type==='error',
+	 	'banner-yellow': notification.type==='warning',
+	 	'banner-green': notification.type==='success',
+	 	'banner-blue': notification.type==='info'}"
+	 ng-if="notification.visible"
+	 ng-mouseenter="$parent.stopTimeout()">
+	 <!--ng-click="$parent.closeNotification()">-->
+
+
+	<div class="banner__Body">{{ notification.message }}</div>
+	<button class="banner__Close" ng-if="notification.type === 'error'" ng-click="notification.visible = false;"><i class="fa fa-close"></i></button>
+</div>
