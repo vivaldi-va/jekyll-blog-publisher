@@ -22,19 +22,19 @@ module.exports = function (grunt) {
 		watch: {
 			injectJS: {
 				files: [
-					'<%= paths.dev %>/{dev,components}/**/*.js',
-					'!<%= paths.dev %>/{dev,components}/**/*.{spec,mock}.js',
-					'!<%= paths.dev %>/dev/dev.js'],
+					'<%= paths.dev %>/{app,components}/**/*.js',
+					'!<%= paths.dev %>/{app,components}/**/*.{spec,mock}.js',
+					'!<%= paths.dev %>/app/dev.js'],
 				tasks: ['injector:scripts']
 			},
 			injectSass: {
 				files: [
-					'<%= paths.dev %>/{dev,components,styles}/**/*.{scss,sass}'],
+					'<%= paths.dev %>/{app,components,styles}/**/*.{scss,sass}'],
 				tasks: ['injector:sass']
 			},
 			sass: {
 				files: [
-					'<%= paths.dev %>/{dev,components,styles}/**/*.{scss,sass}'],
+					'<%= paths.dev %>/{app,components,styles}/**/*.{scss,sass}'],
 				tasks: ['sass', 'autoprefixer']
 			},
 			injectBowerComponents: {
@@ -48,11 +48,11 @@ module.exports = function (grunt) {
 			},
 			livereload: {
 				files: [
-					'{.tmp,<%= paths.dev %>}/{dev,components}/**/*.css',
-					'{.tmp,<%= paths.dev %>}/{dev,components}/**/*.html',
-					'{.tmp,<%= paths.dev %>}/{dev,components}/**/*.js',
-					'!{.tmp,<%= paths.dev %>}{dev,components}/**/*.spec.js',
-					'!{.tmp,<%= paths.dev %>}/{dev,components}/**/*.mock.js',
+					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.css',
+					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.html',
+					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.js',
+					'!{.tmp,<%= paths.dev %>}{app,components}/**/*.spec.js',
+					'!{.tmp,<%= paths.dev %>}/{app,components}/**/*.mock.js',
 					'<%= paths.dev %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
 				],
 				options: {
