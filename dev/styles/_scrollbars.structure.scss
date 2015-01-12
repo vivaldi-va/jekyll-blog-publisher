@@ -1,0 +1,25 @@
+$track-width: 4px;
+
+::-webkit-scrollbar {
+
+	width: $track-width;
+
+	&-button {}
+
+	&-track {}
+	&-track-piece {}
+
+
+	&-thumb {
+		border-radius: $track-width/2;
+		background: $color-black-05;
+	}
+
+	&-corner {}
+}
+
+::-webkit-scrollbar-button       { /* 2 */ }
+::-webkit-scrollbar-track        { /* 3 */ }
+::-webkit-scrollbar-track-piece  { /* 4 */ }
+::-webkit-scrollbar-thumb        { /* 5 */ }
+::-webkit-scrollbar-corner       { /* 6 */ }
