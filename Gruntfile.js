@@ -116,7 +116,7 @@ module.exports = function (grunt) {
 						expand: true,
 						cwd: '<%= paths.dev %>/app',
 						src: 'app.scss',
-						dest: '.tmp/app',
+						dest: '.tmp/public',
 						ext: '.css'
 					}
 				]
@@ -233,20 +233,18 @@ module.exports = function (grunt) {
 						expand: true,
 						dot: true,
 						cwd: '<%= paths.dev %>',
-						dest: '<%= paths.dist %>/app',
+						dest: '<%= paths.dist %>/public',
 						src: [
 							'*.{ico,png,txt}',
 							'.htaccess',
-							'assets/images/{,*/}*.{webp}',
-							'assets/fonts/**/*',
-							'index.html',
+							'**/*.html',
 							'!bower_components/**/*'
 						]
 					},
 					{
 						expand: true,
 						cwd: '<%= paths.srv %>',
-						dest: '<%= paths.dist %>/srv',
+						dest: '<%= paths.dist %>/lib',
 						src: [
 							'**/*'
 						]
@@ -256,13 +254,14 @@ module.exports = function (grunt) {
 						cwd: './',
 						dest: '<%= paths.dist %>',
 						src: [
-							'package.json'
+							'package.json',
+							'Procfile'
 						]
 					},
 					{
 						expand: true,
 						cwd: '<%= paths.dev %>/fonts',
-						dest: '<%= paths.dist %>/app/fonts',
+						dest: '<%= paths.dist %>/public/fonts',
 						src: [
 							'*'
 						]
@@ -289,10 +288,10 @@ module.exports = function (grunt) {
 			dist: {
 				files: {
 					src: [
-						'<%= paths.dist %>/app/{,*/}*.js',
-						'<%= paths.dist %>/app/{,*/}*.css',
-						'<%= paths.dist %>/app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-						'<%= paths.dist %>/app/fonts/*',
+						'<%= paths.dist %>/public/{,*/}*.js',
+						'<%= paths.dist %>/public/{,*/}*.css',
+						'<%= paths.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+						'<%= paths.dist %>/public/fonts/*',
 					]
 				}
 			}
@@ -300,15 +299,15 @@ module.exports = function (grunt) {
 		useminPrepare: {
 			html: '<%= paths.dev %>/index.html',
 			options: {
-				dest: '<%= paths.dist %>'
+				dest: '<%= paths.dist %>/public'
 			}
 		},
 
 		// Performs rewrites based on filerev and the useminPrepare configuration
 		usemin: {
-			html: ['<%= paths.dist %>/app/{,*/}*.html'],
-			css: ['<%= paths.dist %>/app/{,*/}*.css'],
-			js: ['<%= paths.dist %>/app/{,*/}*.js'],
+			html: ['<%= paths.dist %>/public/{,*/}*.html'],
+			css: ['<%= paths.dist %>/public/{,*/}*.css'],
+			js: ['<%= paths.dist %>/public/{,*/}*.js'],
 			options: {
 				assetsDirs: [
 					'<%= paths.dist %>',
@@ -400,7 +399,7 @@ module.exports = function (grunt) {
 		'copy:dist',
 		'cssmin',
 		'uglify',
-		'rev',
+		//'rev',
 		'usemin'
 	]);
 
