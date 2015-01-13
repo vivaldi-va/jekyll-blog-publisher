@@ -18,6 +18,13 @@ angular.module('Moni.BlogEdit.Services')
 			}
 		});
 
+
+		SocketService.on('post::updated', function(msg) {
+			$log.debug("Post saved", msg);
+			$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
+		});
+
+
 		function Post() {
 			this.title = "untitled";
 			this.text = ""
@@ -84,6 +91,7 @@ angular.module('Moni.BlogEdit.Services')
 			SocketService.emit('post::create', post);
 			SocketService.on('post::create', function(msg) {
 				$location.path('/write/' + msg._id);
+				$rootScope.$broadcast('event::notification', {type: 'info', message: "New post created"});
 			});
 		}
 
@@ -108,6 +116,8 @@ angular.module('Moni.BlogEdit.Services')
 			$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
 
 			SocketService.emit('post::save', post);
+
+
 
 		}
 

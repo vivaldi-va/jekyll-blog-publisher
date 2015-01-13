@@ -6,11 +6,11 @@
 'use strict';
 
 angular.module('Moni.BlogEdit')
-	.controller('NotificationCtrl', function($scope) {
+	.controller('NotificationCtrl', function($scope, $log) {
 		$scope.notifications = [];
 
 		$scope.$on('event::notification', function(event, msg) {
-			console.log("event::notification");
+			$log.debug("event::notification", $scope.notifications);
 			msg.visible = true;
 			$scope.notifications.push(msg);
 

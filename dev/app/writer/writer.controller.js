@@ -57,11 +57,9 @@ angular.module('Moni.BlogEdit.Controllers')
 
 			if(!_id) {
 				WriterService.createPost($scope.post);
-				$rootScope.$broadcast('event::notification', {type: 'info', message: "New post created"});
 			} else {
 				WriterService.cachePost($scope.post);
 				WriterService.savePost($scope.post);
-				$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
 			}
 		});
 

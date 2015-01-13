@@ -8,6 +8,8 @@ angular.module('Moni.BlogEdit.Services')
 
 
 		var socket;
+		var _emitterQueue = [];
+
 		$rootScope.socket = socket = null;
 
 
@@ -25,7 +27,11 @@ angular.module('Moni.BlogEdit.Services')
 						connect($rootScope.token);
 					}
 
-				}, 1000);
+					if(!!socket.connected) {
+						_sendQueuedEvent();
+					}
+
+				}, 500);
 
 			}
 		}
@@ -45,12 +51,31 @@ angular.module('Moni.BlogEdit.Services')
 
 		function emit(event, msg) {
 			"use strict";
-			socket.emit(event, msg);
+			msg = msg || {};
+			//socket.emit(event, msg);
+			_emitterQueue.push({event: event, msg: msg})
 		}
 
 		function on(event, cb) {
 			"use strict";
 			socket.on(event, cb);
+		}
+
+		/**
+		 * Send all events from the event queue, if there are any
+		 * @private
+		 */
+		function _sendQueuedEvent() {
+
+			if(_emitterQueue.length > 0) {
+				//$log.debug("emitter queue", _emitterQueue);
+				var event = _emitterQueue.shift();
+				$log.debug('SOCKET', "Savings.Services.SocketService.sendQueuedEvent(" + event.event + ")");
+
+				socket.emit(event.event, event.msg);
+				//_emitterQueueCache.push(event);
+				_sendQueuedEvent();
+			}
 		}
 
 
