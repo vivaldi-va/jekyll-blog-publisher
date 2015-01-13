@@ -17,7 +17,8 @@ module.exports = function (grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		paths: {
 			dev: require('./bower.json').appPath || 'dev',
-			dist: 'dist'
+			dist: 'dist',
+			srv: 'lib'
 		},
 		watch: {
 			injectJS: {
@@ -232,7 +233,7 @@ module.exports = function (grunt) {
 						expand: true,
 						dot: true,
 						cwd: '<%= paths.dev %>',
-						dest: '<%= paths.dist %>',
+						dest: '<%= paths.dist %>/app',
 						src: [
 							'*.{ico,png,txt}',
 							'.htaccess',
@@ -244,10 +245,28 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
-						cwd: '.tmp/images',
-						dest: '<%= paths.dist %>/assets/images',
-						src: ['generated/*']
-					}
+						cwd: '<%= paths.srv %>',
+						dest: '<%= paths.dist %>/srv',
+						src: [
+							'**/*'
+						]
+					},
+					{
+						expand: true,
+						cwd: './',
+						dest: '<%= paths.dist %>',
+						src: [
+							'package.json'
+						]
+					},
+					{
+						expand: true,
+						cwd: '<%= paths.dev %>/fonts',
+						dest: '<%= paths.dist %>/app/fonts',
+						src: [
+							'*'
+						]
+					},
 				]
 			},
 			styles: {
@@ -270,10 +289,10 @@ module.exports = function (grunt) {
 			dist: {
 				files: {
 					src: [
-						'<%= paths.dist %>/{,*/}*.js',
-						'<%= paths.dist %>/{,*/}*.css',
-						'<%= paths.dist %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-						'<%= paths.dist %>/assets/fonts/*'
+						'<%= paths.dist %>/app/{,*/}*.js',
+						'<%= paths.dist %>/app/{,*/}*.css',
+						'<%= paths.dist %>/app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+						'<%= paths.dist %>/app/fonts/*',
 					]
 				}
 			}
@@ -325,8 +344,23 @@ module.exports = function (grunt) {
 					require: ['./test/helpers/chai', './test/helpers/vars']
 				},
 				src: ['./srv/**/*.spec.js']
-			},
+			}
+		},
+		buildcontrol: {
+		options: {
+			dir: 'dist',
+				commit: true,
+				push: true,
+				connectCommits: false,
+				message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+		},
+		heroku: {
+			options: {
+				remote: 'git@heroku.com:moniblogeditor.git',
+				branch: 'master'
+			}
 		}
+	}
 
 	});
 
@@ -368,5 +402,10 @@ module.exports = function (grunt) {
 		'uglify',
 		'rev',
 		'usemin'
+	]);
+
+	grunt.registerTask('deploy', [
+		'build',
+		'buildcontrol:heroku'
 	]);
 };
