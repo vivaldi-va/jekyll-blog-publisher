@@ -4,7 +4,7 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('SocketService', function($rootScope, $log, $interval, socketFactory) {
+	.factory('SocketService', function($rootScope, $log, $interval, $timeout, socketFactory) {
 
 
 		var socket;
@@ -58,7 +58,15 @@ angular.module('Moni.BlogEdit.Services')
 
 		function on(event, cb) {
 			"use strict";
-			socket.on(event, cb);
+
+			if(!socket) {
+				$timeout(function() {
+					on(event, cb);
+				}, 1000);
+			} else {
+				socket.on(event, cb);
+			}
+
 		}
 
 		/**

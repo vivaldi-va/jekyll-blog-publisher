@@ -29,9 +29,12 @@ angular
 	.run(function($rootScope, $location, $log, UserService, SocketService) {
 		UserService.checkSession()
 			.then(function(data) {
+				var path = $location.path();
 				$log.debug("Session success", data.data.data.token); // i dont even...
 				$rootScope.token = data.data.data.token;
 				SocketService.connect(data.data.data.token);
+				$location.path(path);
+
 
 			}, function(data, status) {
 				$log.warn('Session check failed, log back in');

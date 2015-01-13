@@ -4,7 +4,7 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('WriterService', function($rootScope, $location, $resource, $log, $http, localStorageService, SocketService, PostsService, OfflineService) {
+	.factory('WriterService', function($rootScope, $location, $resource, $log, $http, $cookies,  localStorageService, SocketService, PostsService, OfflineService) {
 
 		"use strict";
 
@@ -60,10 +60,11 @@ angular.module('Moni.BlogEdit.Services')
 					cb(post);
 				});
 
+				$log.debug("token should be defined", $rootScope.token);
 				$http({
 					url: '/api/post/' + id,
 					method: 'get',
-					headers: {'Authorization': $rootScope.token}
+					headers: {'Authorization': $cookies['mblogedit.token']}
 				})
 					.success(function(data) {
 						cb(data.data);

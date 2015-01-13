@@ -17,10 +17,13 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.savedPostTitle	= null;
 
 
-		WriterService.getPost(_id, function(post) {
-			$scope.post = post;
-			$log.debug('Init post', $scope.post);
+		$timeout(function() {
+			WriterService.getPost(_id, function(post) {
+				$scope.post = post;
+				$log.debug('Init post', $scope.post);
+			});
 		});
+
 
 		if(!!_id) {
 			WriterService.syncPost(_id, function(post) {
