@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 			injectSass: {
 				files: [
 					'<%= paths.dev %>/{app,components,styles}/**/*.{scss,sass}'],
-				tasks: ['injector:sass', 'sass', 'autoprefixer']
+				tasks: ['injector:sass', 'sass:watch', 'autoprefixer']
 			},
 			injectBowerComponents: {
 				files: [
@@ -117,6 +117,17 @@ module.exports = function (grunt) {
 						cwd: '<%= paths.dev %>/app',
 						src: 'app.scss',
 						dest: '.tmp/public',
+						ext: '.css'
+					}
+				]
+			},
+			watch: {
+				files: [
+					{
+						expand: true,
+						cwd: '<%= paths.dev %>/app',
+						src: 'app.scss',
+						dest: '.tmp/app',
 						ext: '.css'
 					}
 				]
