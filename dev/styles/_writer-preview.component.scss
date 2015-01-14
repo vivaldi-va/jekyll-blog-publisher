@@ -1,0 +1,214 @@
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-italic-webfont.eot');
+	src: url('/fonts/fsme-italic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-italic-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-italic-webfont.woff') format('woff'),
+	url('/fonts/fsme-italic-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-italic-webfont.svg#fs_meitalic') format('svg');
+	font-weight: normal;
+	font-style: italic;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-heavyitalic-webfont.eot');
+	src: url('/fonts/fsme-heavyitalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-heavyitalic-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-heavyitalic-webfont.woff') format('woff'),
+	url('/fonts/fsme-heavyitalic-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-heavyitalic-webfont.svg#fs_meheavy_italic') format('svg');
+	font-weight: 700;
+	font-style: italic;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-regular-webfont.eot');
+	src: url('/fonts/fsme-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-regular-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-regular-webfont.woff') format('woff'),
+	url('/fonts/fsme-regular-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-regular-webfont.svg#fs_meregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-heavy-webfont.eot');
+	src: url('/fonts/fsme-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-heavy-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-heavy-webfont.woff') format('woff'),
+	url('/fonts/fsme-heavy-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-heavy-webfont.svg#fs_meheavy') format('svg');
+	font-weight: 700;
+	font-style: normal;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-light-webfont.eot');
+	src: url('/fonts/fsme-light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-light-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-light-webfont.woff') format('woff'),
+	url('/fonts/fsme-light-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-light-webfont.svg#fs_melight') format('svg');
+	font-weight: 300;
+	font-style: normal;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-lightitalic-webfont.eot');
+	src: url('/fonts/fsme-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-lightitalic-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-lightitalic-webfont.woff') format('woff'),
+	url('/fonts/fsme-lightitalic-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-lightitalic-webfont.svg#fs_melight_italic') format('svg');
+	font-weight: 300;
+	font-style: italic;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-bolditalic-webfont.eot');
+	src: url('/fonts/fsme-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-bolditalic-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-bolditalic-webfont.woff') format('woff'),
+	url('/fonts/fsme-bolditalic-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-bolditalic-webfont.svg#fs_mebold_italic') format('svg');
+	font-weight: 600;
+	font-style: italic;
+
+}
+
+
+
+
+@font-face {
+	font-family: 'FS Me';
+	src: url('/fonts/fsme-bold-webfont.eot');
+	src: url('/fonts/fsme-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/fsme-bold-webfont.woff2') format('woff2'),
+	url('/fonts/fsme-bold-webfont.woff') format('woff'),
+	url('/fonts/fsme-bold-webfont.ttf') format('truetype'),
+	url('/fonts/fsme-bold-webfont.svg#fs_mebold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+
+}
+
+.editor__Preview {
+
+
+	font: {
+		size: 1.15em;
+		family: 'FS Me', sans-serif;
+		weight: 300;
+	}
+
+	line-height: 1.5;
+
+	color: $color-black-04;
+
+
+
+	a,
+	a:link,
+	a:visited {
+		color: inherit;
+
+	}
+
+	a:hover {
+		color: $color-blue-03;
+	}
+
+	a:active {
+		color: $color-blue-03;
+	}
+
+	a:focus {
+		color: $color-blue-03;
+	}
+
+	strong, b {
+		font-weight: 600;
+	}
+
+	h3 {
+		margin: 1em 0 0;
+
+		font: {
+			size: 1.25em;
+			weight: 300;
+		}
+
+		color: $color-salmon;
+
+		text-transform: capitalize;
+
+		& + p {
+			margin: 0;
+		}
+	}
+
+	pre {
+		margin: 0;
+		padding: 0.5em;
+		overflow-x: auto;
+		box-sizing: border-box;
+	}
+
+	.highlight {
+		border-radius: 3px;
+	}
+
+	blockquote {
+
+		margin: 2em 0;
+		padding: 0 0 0 1em;
+		border-left: 4px solid $color-salmon;
+		font: {
+			size: 0.85em;
+			family: 'Merriweather';
+			style: italic;
+		}
+
+		line-height: 1.7;
+
+		cite {
+			opacity: 0.85;
+			&:before {
+				content: "-";
+			}
+		}
+	}
+
+}

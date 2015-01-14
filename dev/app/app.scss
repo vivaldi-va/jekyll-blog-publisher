@@ -49,6 +49,9 @@ $color-yellow-04: #ffda7c;
 $color-yellow-05: #ffe6a6;
 $color-yellow-06: #fff1cc;
 
+
+$color-salmon: rgb(239, 108, 111);
+
 // injector
 @import '../components/dropdown/_dropdown.component.scss';
 @import '../components/menu/_menu.component.scss';
@@ -61,6 +64,7 @@ $color-yellow-06: #fff1cc;
 @import '../styles/_scaffold.core.scss';
 @import '../styles/_scrollbars.structure.scss';
 @import '../styles/_typography.core.scss';
+@import '../styles/_writer-preview.component.scss';
 @import '../styles/drop/_drop.global.scss';
 @import '../styles/elements/_label.element.scss';
 @import '../styles/elements/_pill.element.scss';
