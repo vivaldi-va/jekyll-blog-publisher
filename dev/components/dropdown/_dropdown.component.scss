@@ -46,18 +46,22 @@ $arrowSize: 8px;
 		margin: 0.25rem 0;
 	}
 
-	&__BlockItemTitle {
-		padding: 0 2em 0 0;
-		font: {
-			weight: 600;
-		}
+	&__BlockTitle {
+		display: block;
+		margin: 0 0 0.5em 0;
 		color: $color-black-06;
-		text-transform: capitalize;
+		text-transform: uppercase;
 	}
 
 	&__Link {
 		cursor: pointer;
 		user-select: none;
+	}
+
+	&__Footer {
+		margin: 1em 0 0;
+		padding: 1em 0 0;
+		border-top: 1px solid $color-black-08;
 	}
 }
 

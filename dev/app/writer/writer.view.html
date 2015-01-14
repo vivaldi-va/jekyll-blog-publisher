@@ -17,7 +17,21 @@
 					<mo-dropdown>
 						<button class="button button-clear dropdown__Link"><i class="fa fa-gear"></i></button>
 						<div class="dropdown dropdown__Target">
-							some settings
+							<div class="dropdown__Block">
+								<span class="dropdown__BlockTitle">status</span>
+								<span class="label label-{{ getPostLabelColor() }}">{{ getPostLabelText() }}</span>
+							</div>
+							<div class="dropdown__Block">
+								<span class="dropdown__BlockTitle">status</span>
+								<select class="input" ng-model="category">
+									<option value="blog" selected="selected">blog</option>
+									<option value="press">press</option>
+								</select>
+							</div>
+							<div class="dropdown__Footer">
+								<button class="button button-blue">Save draft</button>
+								<button class="button button-green" ng-if="user.can_publish">Publish</button>
+							</div>
 						</div>
 					</mo-dropdown>
 					<mo-dropdown>
