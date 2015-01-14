@@ -3,7 +3,7 @@
  */
 
 angular.module('Moni.BlogEdit')
-	.factory('UserService', function($rootScope, $http, SocketService) {
+	.factory('UserService', function($rootScope, $http, $log, SocketService) {
 		"use strict";
 
 		function create(user) {
@@ -14,6 +14,7 @@ angular.module('Moni.BlogEdit')
 			})
 				.then(function(data) {
 					$rootScope.token = data.data.data.token;
+					$rootScope.user	= data.data.data.user;
 					SocketService.connect($rootScope.token);
 				})
 		}
@@ -27,6 +28,7 @@ angular.module('Moni.BlogEdit')
 				.then(function(data) {
 					console.log(data);
 					$rootScope.token = data.data.data.token;
+					$rootScope.user	= data.data.data.user;
 
 					SocketService.connect($rootScope.token);
 				});
@@ -36,7 +38,14 @@ angular.module('Moni.BlogEdit')
 			return $http({
 				url: '/api/user/session',
 				method: 'get'
-			});
+			})
+				.then(function(data) {
+					console.log("user", data.data.data);
+					$rootScope.token = data.data.data.token;
+					$rootScope.user = data.data.data.user;
+
+					return data;
+				});
 		}
 
 		return {
