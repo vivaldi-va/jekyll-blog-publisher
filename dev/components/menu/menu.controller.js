@@ -3,7 +3,7 @@
  */
 
 angular.module('Moni.BlogEdit')
-	.controller('MenuCtrl', function($rootScope, $scope, PostsService) {
+	.controller('MenuCtrl', function($rootScope, $scope, $location, PostsService) {
 		"use strict";
 
 		PostsService.getPosts()
@@ -40,5 +40,10 @@ angular.module('Moni.BlogEdit')
 
 			return text;
 		};
+
+		$scope.goto = function(post) {
+			$rootScope.menu = false;
+			$location.path('/write/' + post._id);
+		}
 
 	});

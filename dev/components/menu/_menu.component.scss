@@ -28,6 +28,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		text-transform: capitalize;
+		cursor: pointer;
+		user-select: none;
 	}
 
 	&__PostTitle {
