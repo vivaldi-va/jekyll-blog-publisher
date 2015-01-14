@@ -10,7 +10,7 @@ angular.module('Moni.BlogEdit.Services')
 
 		var POST_NAMESPACE	= "Moni.BlogEdit";
 		var ACTIVE_POST_KEY	= POST_NAMESPACE + ".ActivePost";
-
+		var EDITOR_ELEMENT	= document.getElementById('edit-source');
 
 		var crud = $resource('/api/post/:id', { id: '@_id' }, {
 			update: {
@@ -137,6 +137,47 @@ angular.module('Moni.BlogEdit.Services')
 			});
 		}
 
+		function addTextFormatting(type) {
+			var startPos = EDITOR_ELEMENT.selectionStart;
+			var endPos = EDITOR_ELEMENT.selectionEnd;
+			var selectedText = EDITOR_ELEMENT.value.substring(startPos, endPos);
+
+			if(selectedText.length === 0) {
+				return EDITOR_ELEMENT.value;
+			}
+
+			var text;
+
+			switch(type) {
+				case 'bold':
+					if(selectedText.match(/\*\*(\w+)\*\*/)) {
+						$log.info("already formatted");
+						text = selectedText.replace(/\*\*(\w+)\*\*/, "$1");
+					} else {
+						text = '**' + selectedText + '**';
+					}
+					break;
+				case 'italic':
+					if(selectedText.match(/_(\w+)_/)) {
+						$log.info("already formatted");
+						text = selectedText.replace(/_(\w+)_/, "$1");
+					} else {
+						text = '_' + selectedText + '_';
+					}
+					break;
+				case 'header':
+					if(selectedText.match(/###(\w+)/)) {
+						$log.info("already formatted");
+						text = selectedText.replace(/###(\w+)/, "$1");
+					} else {
+						text = '###' + selectedText;
+					}
+					break;
+			}
+
+			return EDITOR_ELEMENT.value.slice(0, startPos) + text + EDITOR_ELEMENT.value.slice(endPos);
+		}
+
 		return {
 			resource: crud,
 			newPost: newPost,
@@ -144,7 +185,8 @@ angular.module('Moni.BlogEdit.Services')
 			createPost: createPost,
 			savePost: savePost,
 			syncPost: syncPost,
-			cachePost: cachePost
+			cachePost: cachePost,
+			addTextFormatting: addTextFormatting
 		};
 
 	});

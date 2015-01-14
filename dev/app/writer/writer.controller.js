@@ -92,4 +92,8 @@ angular.module('Moni.BlogEdit.Controllers')
 				}, 1000);
 			}
 		});
+
+		$scope.formatText = function(action) {
+			$scope.post.text = WriterService.addTextFormatting(action);
+		};
 	});
