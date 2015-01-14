@@ -137,30 +137,31 @@ angular.module('Moni.BlogEdit.Services')
 			});
 		}
 
-		function addTextFormatting(type) {
+		function addTextFormatting(post, type) {
 			var startPos = EDITOR_ELEMENT.selectionStart;
 			var endPos = EDITOR_ELEMENT.selectionEnd;
-			var selectedText = EDITOR_ELEMENT.value.substring(startPos, endPos);
+			var selectedText = post.substring(startPos, endPos);
 
 			if(selectedText.length === 0) {
-				return EDITOR_ELEMENT.value;
+				return post;
 			}
 
 			var text;
 
+			$log.debug("Selected text", selectedText);
 			switch(type) {
 				case 'bold':
-					if(selectedText.match(/\*\*(\w+)\*\*/)) {
+					if(selectedText.match(/\*\*([\w\s]+)\*\*/)) {
 						$log.info("already formatted");
-						text = selectedText.replace(/\*\*(\w+)\*\*/, "$1");
+						text = selectedText.replace(/\*\*([\w\s]+)\*\*/, "$1");
 					} else {
 						text = '**' + selectedText + '**';
 					}
 					break;
 				case 'italic':
-					if(selectedText.match(/_(\w+)_/)) {
+					if(selectedText.match(/_([\w\s]+)_/)) {
 						$log.info("already formatted");
-						text = selectedText.replace(/_(\w+)_/, "$1");
+						text = selectedText.replace(/_([\w\s]+)_/, "$1");
 					} else {
 						text = '_' + selectedText + '_';
 					}
@@ -168,14 +169,42 @@ angular.module('Moni.BlogEdit.Services')
 				case 'header':
 					if(selectedText.match(/###(\w+)/)) {
 						$log.info("already formatted");
-						text = selectedText.replace(/###(\w+)/, "$1");
+						text = selectedText.replace(/###([\w\s]+)/, "$1");
 					} else {
 						text = '###' + selectedText;
 					}
 					break;
 			}
 
-			return EDITOR_ELEMENT.value.slice(0, startPos) + text + EDITOR_ELEMENT.value.slice(endPos);
+			return post.slice(0, startPos) + text + post.slice(endPos);
+		}
+
+		function postLabelColor(post) {
+			var color = 'default';
+
+			if(post.attrs.is_published) {
+				if(post.attrs.is_draft) {
+					color = 'blue';
+				} else {
+					color = 'green';
+				}
+			}
+
+			return color;
+		}
+
+		function postLabelText(post) {
+			var text = 'unpublished';
+
+			if(post.attrs.is_published) {
+				if(post.attrs.is_draft) {
+					text = 'draft';
+				} else {
+					text = 'published';
+				}
+			}
+
+			return text;
 		}
 
 		return {
@@ -186,7 +215,9 @@ angular.module('Moni.BlogEdit.Services')
 			savePost: savePost,
 			syncPost: syncPost,
 			cachePost: cachePost,
-			addTextFormatting: addTextFormatting
+			addTextFormatting: addTextFormatting,
+			postLabelColor: postLabelColor,
+			postLabelText: postLabelText
 		};
 
 	});

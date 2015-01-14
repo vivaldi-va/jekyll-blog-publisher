@@ -3,7 +3,7 @@
  */
 
 angular.module('Moni.BlogEdit')
-	.controller('MenuCtrl', function($rootScope, $scope, $location, PostsService) {
+	.controller('MenuCtrl', function($rootScope, $scope, $location, PostsService, WriterService) {
 		"use strict";
 
 		PostsService.getPosts()
@@ -13,32 +13,12 @@ angular.module('Moni.BlogEdit')
 
 		$scope.getPostLabelColor = function(post) {
 
-			var color = 'default';
-
-			if(post.attrs.is_published) {
-				if(post.attrs.is_draft) {
-					color = 'blue';
-				} else {
-					color = 'green';
-				}
-			}
-
-			return color;
+			return WriterService.postLabelColor(post);
 		};
 
 
 		$scope.getPostLabelText = function(post) {
-			var text = 'unpublished';
-
-			if(post.attrs.is_published) {
-				if(post.attrs.is_draft) {
-					text = 'draft';
-				} else {
-					text = 'published';
-				}
-			}
-
-			return text;
+			return WriterService.postLabelText(post);
 		};
 
 		$scope.goto = function(post) {

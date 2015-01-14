@@ -21,6 +21,15 @@ angular.module('Moni.BlogEdit.Controllers')
 			WriterService.getPost(_id, function(post) {
 				$scope.post = post;
 				$log.debug('Init post', $scope.post);
+
+				$scope.getPostLabelColor = function() {
+					return WriterService.postLabelColor($scope.post);
+				};
+
+				$scope.getPostLabelText = function() {
+					return WriterService.postLabelText($scope.post);
+				};
+
 			});
 		});
 
@@ -94,6 +103,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		});
 
 		$scope.formatText = function(action) {
-			$scope.post.text = WriterService.addTextFormatting(action);
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action);
 		};
 	});
