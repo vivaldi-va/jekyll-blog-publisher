@@ -135,7 +135,7 @@
 
 	line-height: 1.5;
 
-	color: $color-black-04;
+	color: $color-black-02;
 
 
 
@@ -191,14 +191,14 @@
 	}
 
 	blockquote {
-
 		margin: 2em 0;
 		padding: 0 0 0 1em;
 		border-left: 4px solid $color-salmon;
 		font: {
-			size: 0.85em;
+			size: 1em;
 			family: 'Merriweather';
 			style: italic;
+			weight: 400;
 		}
 
 		line-height: 1.7;
