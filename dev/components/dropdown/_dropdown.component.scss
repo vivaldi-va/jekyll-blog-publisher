@@ -12,10 +12,9 @@ $arrowSize: 8px;
 }
 
 .dropdown {
-
 	position: relative;
-	width: 200px;
-	padding: 1em;
+	min-width: 200px;
+	padding: 0.5em;
 	background: $color-black-10;
 	color: $color-black-04;
 	border-radius: 3px;
@@ -25,6 +24,7 @@ $arrowSize: 8px;
 	animation-duration: 0.075s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
+
 
 
 	&__Wrapper {
