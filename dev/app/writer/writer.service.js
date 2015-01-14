@@ -24,6 +24,13 @@ angular.module('Moni.BlogEdit.Services')
 			$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
 		});
 
+		SocketService.on('post::published', function(msg) {
+			$log.debug("Post published", msg);
+			$rootScope.$broadcast('event::notification', {type: 'info', message: msg.isDraft ? "Post published as draft" : "Post published"});
+		});
+
+
+
 
 		function Post() {
 			this.title = "untitled";
@@ -205,6 +212,10 @@ angular.module('Moni.BlogEdit.Services')
 			}
 
 			return text;
+		}
+
+		function publish(msg) {
+			SocketService.emit('post::publish', msg);
 		}
 
 		return {

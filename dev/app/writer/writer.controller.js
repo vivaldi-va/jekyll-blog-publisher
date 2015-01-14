@@ -8,7 +8,7 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $routeParams, WriterService, SocketService) {
+	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $routeParams, WriterService, ModalService) {
 		var _id = $routeParams.id || false;
 		var _autoSaveTimeout;
 		$scope.postSource		= "";
@@ -76,6 +76,22 @@ angular.module('Moni.BlogEdit.Controllers')
 			}
 		});
 
+		$scope.formatText = function(action) {
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action);
+		};
+
+		$scope.publishDraft = function() {
+			$scope.post.attrs.is_published = true;
+			WriterService.publish({id: $scope.post._id, isDraft: true});
+
+		};
+
+		$scope.publishLive = function() {
+			$scope.post.attrs.is_published = true;
+			$scope.post.attrs.is_draft = false;
+			WriterService.publish({id: $scope.post._id, isDraft: false});
+		};
+
 
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {
@@ -101,8 +117,4 @@ angular.module('Moni.BlogEdit.Controllers')
 				}, 1000);
 			}
 		});
-
-		$scope.formatText = function(action) {
-			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action);
-		};
 	});
