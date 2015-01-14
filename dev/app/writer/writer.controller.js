@@ -27,6 +27,7 @@ angular.module('Moni.BlogEdit.Controllers')
 
 		if(!!_id) {
 			WriterService.syncPost(_id, function(post) {
+				$log.debug("Post sync'd", post);
 				$scope.post = post;
 			});
 		}

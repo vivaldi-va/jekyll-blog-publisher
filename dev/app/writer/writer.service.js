@@ -19,7 +19,7 @@ angular.module('Moni.BlogEdit.Services')
 		});
 
 
-		SocketService.on('post::updated', function(msg) {
+		SocketService.on('post::saved', function(msg) {
 			$log.debug("Post saved", msg);
 			$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
 		});
@@ -98,7 +98,7 @@ angular.module('Moni.BlogEdit.Services')
 
 		function cachePost(post, cb) {
 			cb = cb || angular.noop;
-			var id = post.id || ACTIVE_POST_KEY;
+			var id = post._id || ACTIVE_POST_KEY;
 
 			$log.debug("post cached in localstorage");
 
@@ -125,7 +125,7 @@ angular.module('Moni.BlogEdit.Services')
 		function syncPost(postId, cb) {
 			"use strict";
 
-			SocketService.emit('post::updated', function(msg) {
+			SocketService.on('post::updated', function(msg) {
 				if(msg.error) {
 					$log.error(msg.error);
 				} else {
