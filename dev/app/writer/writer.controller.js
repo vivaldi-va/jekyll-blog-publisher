@@ -23,11 +23,11 @@ angular.module('Moni.BlogEdit.Controllers')
 				$log.debug('Init post', $scope.post);
 
 				$scope.getPostLabelColor = function() {
-					return WriterService.postLabelColor($scope.post);
+					return WriterService.postLabelColor(post);
 				};
 
 				$scope.getPostLabelText = function() {
-					return WriterService.postLabelText($scope.post);
+					return WriterService.postLabelText(post);
 				};
 
 			});

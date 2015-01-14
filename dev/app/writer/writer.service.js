@@ -228,7 +228,8 @@ angular.module('Moni.BlogEdit.Services')
 			cachePost: cachePost,
 			addTextFormatting: addTextFormatting,
 			postLabelColor: postLabelColor,
-			postLabelText: postLabelText
+			postLabelText: postLabelText,
+			publish: publish
 		};
 
 	});
