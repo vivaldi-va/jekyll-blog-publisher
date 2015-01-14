@@ -343,17 +343,17 @@ module.exports = function (grunt) {
 				options: {
 					ui: 'bdd',
 					reporter: 'list',
-					require: ['./test/helpers/chai', './test/helpers/vars']
+					require: ['./test/helpers/chai']
 				},
-				src: ['./srv/**/*.unit.js']
+				src: ['./lib/**/*.unit.js']
 			},
 			specs: {
 				options: {
 					ui: 'bdd',
 					reporter: 'spec',
-					require: ['./test/helpers/chai', './test/helpers/vars']
+					require: ['./test/helpers/chai']
 				},
-				src: ['./srv/**/*.spec.js']
+				src: ['./lib/**/*.spec.js']
 			}
 		},
 		buildcontrol: {
