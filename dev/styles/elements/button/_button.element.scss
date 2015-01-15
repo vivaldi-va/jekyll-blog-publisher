@@ -15,6 +15,14 @@
 		color: $color-black-04;
 		text-shadow: none;
 
+		&.inverse {
+			color: $color-black-06;
+			&:hover {
+				border-color: $color-black-08;
+				color: $color-black-08;
+			}
+		}
+
 		&:hover {
 			border-color: $color-black-03;
 			color: $color-black-03;
