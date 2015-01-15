@@ -42,19 +42,19 @@ module.exports = function (grunt) {
 			gruntfile: {
 				files: ['Gruntfile.js']
 			},
-			livereload: {
-				files: [
-					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.css',
-					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.html',
-					'{.tmp,<%= paths.dev %>}/{app,components}/**/*.js',
-					'!{.tmp,<%= paths.dev %>}{app,components}/**/*.spec.js',
-					'!{.tmp,<%= paths.dev %>}/{app,components}/**/*.mock.js',
-					'<%= paths.dev %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
-				],
-				options: {
-					livereload: true
-				}
-			}
+			//livereload: {
+			//	files: [
+			//		'{.tmp,<%= paths.dev %>}/{app,components}/**/*.css',
+			//		'{.tmp,<%= paths.dev %>}/{app,components}/**/*.html',
+			//		'{.tmp,<%= paths.dev %>}/{app,components}/**/*.js',
+			//		'!{.tmp,<%= paths.dev %>}{app,components}/**/*.spec.js',
+			//		'!{.tmp,<%= paths.dev %>}/{app,components}/**/*.mock.js',
+			//		'<%= paths.dev %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+			//	],
+			//	options: {
+			//		livereload: true
+			//	}
+			//}
 		},
 		connect: {
 			options: {
