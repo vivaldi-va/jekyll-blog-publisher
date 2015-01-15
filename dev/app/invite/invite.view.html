@@ -1,0 +1,21 @@
+<div class="window">
+
+	<div class="header writer__header">
+	</div>
+
+	<form ng-submit="submit()" class="editor">
+		<label for="">email</label>
+		<input type="email" ng-model="email">
+
+		<label for="">first name</label>
+		<input type="text" ng-model="firstname">
+
+		<label for="">last name</label>
+		<input type="text" ng-model="lastname">
+
+		<label for="">can publish?<input type="checkbox" ng-model="canpublish"></label>
+		<label for="">can invite users?<input type="checkbox" ng-model="caninvite"></label>
+
+		<button type="submit">submit</button>
+	</form>
+</div>
