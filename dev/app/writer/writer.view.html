@@ -31,6 +31,9 @@
 							<div class="dropdown__Footer">
 								<button class="button button-blue" ng-click="publishDraft()" ng-if="!post.attrs.is_published">Save draft</button>
 								<button class="button button-green" ng-click="publishLive()" ng-if="user.permissions.can_publish && post.attrs.is_draft && post.attrs.is_published">Publish</button>
+								{{ user.permissions.can_publish }}
+								{{ post.attrs.is_draft }}
+								{{ post.attrs.is_published }}
 							</div>
 						</div>
 					</mo-dropdown>
