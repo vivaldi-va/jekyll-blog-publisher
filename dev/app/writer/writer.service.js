@@ -26,7 +26,14 @@ angular.module('Moni.BlogEdit.Services')
 
 		SocketService.on('post::published', function(msg) {
 			$log.debug("Post published", msg);
-			$rootScope.$broadcast('event::notification', {type: 'info', message: msg.isDraft ? "Post published as draft" : "Post published"});
+
+			if(msg.isDraft) {
+
+				$rootScope.$broadcast('event::notification', {type: 'info', message: "Post published as draft"});
+			} else {
+				$rootScope.$broadcast('event::notification', {type: 'success', message: "Post published"});
+			}
+
 		});
 
 

@@ -8,7 +8,7 @@
  * Controller of the Moni.BlogEdit
  */
 angular.module('Moni.BlogEdit.Controllers')
-	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $routeParams, WriterService, ModalService) {
+	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $interval, $routeParams, WriterService, ModalService) {
 		var _id = $routeParams.id || false;
 		var _autoSaveTimeout;
 		$scope.postSource		= "";
@@ -39,6 +39,10 @@ angular.module('Moni.BlogEdit.Controllers')
 				$log.debug("Post sync'd", post);
 				$scope.post = post;
 			});
+
+			$interval(function() {
+				WriterService.savePost($scope.post);
+			}, 1000*60);
 		}
 
 
@@ -71,7 +75,7 @@ angular.module('Moni.BlogEdit.Controllers')
 			if(!_id) {
 				WriterService.createPost($scope.post);
 			} else {
-				WriterService.cachePost($scope.post);
+				//WriterService.cachePost($scope.post);
 				WriterService.savePost($scope.post);
 			}
 		});
@@ -93,15 +97,20 @@ angular.module('Moni.BlogEdit.Controllers')
 		};
 
 
+		if(!!_id) {
+
+
+		}
+
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {
 			$log.debug('new value', newValue);
 
 			if(!!newValue) {
 
-				if(_autoSaveTimeout) {
+				/*if(_autoSaveTimeout) {
 					$timeout.cancel(_autoSaveTimeout);
-				}
+				}*/
 
 
 				var text = "";
@@ -114,13 +123,10 @@ angular.module('Moni.BlogEdit.Controllers')
 				var preview = marked(text);
 				$log.debug(preview);
 				$scope.postPreview = preview;
-
-
-				$log.debug('Current post state', $scope.post);
 				//WriterService.savePost($scope.post, false);
-				_autoSaveTimeout = $timeout(function() {
-					WriterService.cachePost($scope.post);
-				}, 1000);
+				/*_autoSaveTimeout = $timeout(function() {
+					WriterService.savePost($scope.post);
+				}, 1000);*/
 			}
 		});
 	});
