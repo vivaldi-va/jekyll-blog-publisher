@@ -47,7 +47,11 @@ angular
 			$log.debug("socket changed: ", newVal);
 		});
 	})
-	.run(function($rootScope) {
+	.run(function($rootScope, $location) {
+		$rootScope.link = function(path) {
+			$rootScope.menu = false;
+			$location.path(path);
+		};
 		$rootScope.menu = false;
 	});
 
