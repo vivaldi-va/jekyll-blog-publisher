@@ -103,11 +103,17 @@ angular.module('Moni.BlogEdit.Controllers')
 					$timeout.cancel(_autoSaveTimeout);
 				}
 
+
+				var text = "";
+
 				if(newValue.text.length) {
-					var preview = marked(newValue.text);
-					$log.debug(preview);
-					$scope.postPreview = preview;
+
+					text = newValue.text;
+
 				}
+				var preview = marked(text);
+				$log.debug(preview);
+				$scope.postPreview = preview;
 
 
 				$log.debug('Current post state', $scope.post);
