@@ -7,6 +7,7 @@
 			<span class="menu__PostTitle">{{ post.title }}</span>
 			<span class="label label-{{ getPostLabelColor(post) }} menu__PostStatus">{{ getPostLabelText(post) }}</span>
 		</div>
+		<button class="button button-default" ng-click="link('/write')">New Post</button>
 	</div>
 
 

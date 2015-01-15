@@ -20,6 +20,7 @@ angular
 		'ngCookies',
 		'ngRoute',
 		'ngAnimate',
+		'angularModalService',
 		'Moni.BlogEdit.Controllers',
 		'Moni.BlogEdit.Services',
 		'Moni.BlogEdit.Directives',
