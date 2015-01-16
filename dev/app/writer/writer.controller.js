@@ -40,7 +40,7 @@ angular.module('Moni.BlogEdit.Controllers')
 				$scope.post = post;
 			});
 
-			$interval(function() {
+			_autoSaveTimeout = $interval(function() {
 				WriterService.savePost($scope.post);
 			}, 1000*60);
 		}
@@ -165,4 +165,6 @@ angular.module('Moni.BlogEdit.Controllers')
 				}, 1000);*/
 			}
 		});
+
+		$scope.$on('$destroy', function () { $interval.cancel(_autoSaveTimeout); });
 	});

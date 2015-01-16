@@ -119,7 +119,7 @@ angular.module('Moni.BlogEdit.Services')
 		function savePost(post, cb) {
 			cb = cb || angular.noop;
 
-			$log.debug("Moni.BlogEdit.Services.WriterService.savePost");
+			$log.debug("Moni.BlogEdit.Services.WriterService.savePost", post._id);
 
 			SocketService.emit('post::save', post);
 
