@@ -34,6 +34,13 @@ angular.module('Moni.BlogEdit')
 				});
 		}
 
+		function logout() {
+			$http({
+				url: '/api/user/logout',
+				method: 'delete'
+			});
+		}
+
 		function checkSession() {
 			return $http({
 				url: '/api/user/session',
@@ -79,6 +86,7 @@ angular.module('Moni.BlogEdit')
 		return {
 			checkSession: checkSession,
 			login: login,
+			logout: logout,
 			create: create,
 			invite: invite,
 			inviteAcceptAuth: inviteAcceptAuth,

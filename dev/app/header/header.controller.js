@@ -4,11 +4,16 @@
 
 
 angular.module('Moni.BlogEdit.Controllers')
-.controller('HeaderCtrl', function($rootScope, $scope, $location, WriterService) {
+.controller('HeaderCtrl', function($rootScope, $scope, $location, WriterService, UserService) {
 
 		$scope.toggleMenu = function() {
 			"use strict";
 			$rootScope.menu = !$rootScope.menu;
 		};
+
+		$scope.logout = function() {
+			"use strict";
+			UserService.logout();
+		}
 
 });

@@ -6,4 +6,11 @@
 	<div class="header__Title">
 		<div class="header__Logo"></div>
 	</div>
+	
+	<mo-dropdown class="header__User">
+		<button class="dropdown__Link button button-clear">{{ user.email }} <i class="fa fa-angle-down"></i></button>
+		<div class="dropdown dropdown__Target">
+			<button class="button button-red button-block" ng-click="logout()">Log out</button>
+		</div>
+	</mo-dropdown>
 </div>

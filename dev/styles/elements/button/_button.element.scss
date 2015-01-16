@@ -9,6 +9,11 @@
 	font-size: 1.4rem;
 	font-weight: 400;
 
+	&-block {
+		display: block;
+		width: 100%;
+	}
+
 	&-default {
 		background: transparent;
 		border: 1px solid $color-black-06;
