@@ -20,12 +20,10 @@ angular.module('Moni.BlogEdit.Services')
 
 
 		SocketService.on('post::saved', function(msg) {
-			$log.debug("Post saved", msg);
 			$rootScope.$broadcast('event::notification', {type: 'info', message: "Post saved"});
 		});
 
 		SocketService.on('post::published', function(msg) {
-			$log.debug("Post published", msg);
 
 			if(msg.isDraft) {
 
@@ -49,8 +47,6 @@ angular.module('Moni.BlogEdit.Services')
 
 			var post = new Post();
 
-			$log.debug("new post", post);
-
 			OfflineService.upsert(ACTIVE_POST_KEY, post, function() {
 				cb(post);
 			});
@@ -70,11 +66,8 @@ angular.module('Moni.BlogEdit.Services')
 
 			if(id) {
 				OfflineService.find(id, function(err, post) {
-					$log.debug("fetching active post", post);
 					cb(post);
 				});
-
-				$log.debug("token should be defined", $rootScope.token);
 				$http({
 					url: '/api/post/' + id,
 					method: 'get',
@@ -92,8 +85,6 @@ angular.module('Moni.BlogEdit.Services')
 			}
 
 			OfflineService.find(id, function(err, post) {
-
-				$log.debug("fetching active post", post);
 
 				if(!!post) {
 					cb(post);
@@ -128,7 +119,7 @@ angular.module('Moni.BlogEdit.Services')
 		function savePost(post, cb) {
 			cb = cb || angular.noop;
 
-			$log.debug("Moni.BlogEdit.Services.WriterService.savePost(saveToServer=true)");
+			$log.debug("Moni.BlogEdit.Services.WriterService.savePost");
 
 			SocketService.emit('post::save', post);
 

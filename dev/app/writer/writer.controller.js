@@ -22,7 +22,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		$timeout(function() {
 			WriterService.getPost(_id, function(post) {
 				$scope.post = post;
-				$log.debug('Init post', $scope.post);
 
 				$scope.getPostLabelColor = function() {
 					return WriterService.postLabelColor(post);
@@ -38,7 +37,6 @@ angular.module('Moni.BlogEdit.Controllers')
 
 		if(!!_id) {
 			WriterService.syncPost(_id, function(post) {
-				$log.debug("Post sync'd", post);
 				$scope.post = post;
 			});
 
@@ -127,7 +125,6 @@ angular.module('Moni.BlogEdit.Controllers')
 
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {
-			$log.debug('new value', newValue);
 
 			if(!!newValue) {
 
@@ -144,7 +141,6 @@ angular.module('Moni.BlogEdit.Controllers')
 
 				}
 				var preview = marked(text);
-				$log.debug(preview);
 				$scope.postPreview = preview;
 				//WriterService.savePost($scope.post, false);
 				/*_autoSaveTimeout = $timeout(function() {
