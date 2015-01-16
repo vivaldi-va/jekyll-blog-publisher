@@ -32,6 +32,9 @@
 	}
 
 	&__Item {
+		user-select: none;
+		cursor: pointer;
+
 		&.ng-enter {
 
 			animation-name: notification-appear;
