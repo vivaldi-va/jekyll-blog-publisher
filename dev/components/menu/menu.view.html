@@ -3,10 +3,13 @@
 	<div class="menu__Section">
 		<h2>posts</h2>
 
-		<div class="menu__SectionItem" ng-repeat="post in posts" ng-click="goto(post)">
+		<div class="menu__SectionItem" ng-class="{'active': isActivePost(post)}" ng-repeat="post in posts" ng-click="goto(post)">
 			<span class="menu__PostTitle">{{ post.title }}</span>
 			<span class="label label-{{ getPostLabelColor(post) }} menu__PostStatus">{{ getPostLabelText(post) }}</span>
 		</div>
+	</div>
+
+	<div class="menu__Section">
 		<button class="button button-default inverse" ng-click="link('/write')">New Post</button>
 	</div>
 

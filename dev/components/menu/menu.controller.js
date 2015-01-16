@@ -3,7 +3,7 @@
  */
 
 angular.module('Moni.BlogEdit')
-	.controller('MenuCtrl', function($rootScope, $scope, $location, PostsService, WriterService) {
+	.controller('MenuCtrl', function($rootScope, $scope, $location, $routeParams, PostsService, WriterService) {
 		"use strict";
 
 		PostsService.getPosts()
@@ -17,6 +17,11 @@ angular.module('Moni.BlogEdit')
 			});
 
 
+		$scope.isActivePost = function(post) {
+			if(post._id === $routeParams.id) {
+				return true;
+			}
+		};
 
 		$scope.getPostLabelColor = function(post) {
 
