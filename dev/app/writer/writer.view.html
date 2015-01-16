@@ -3,8 +3,8 @@
 	<div ng-include="'views/partials/nav.view.partial.html'"></div>
 
 	<div class="editor">
-		<div class="editor__Source">
-			<div class="editor__Toolbar">
+		<div class="editor__Source" ng-class="{'full-screen': !!sourceFullscreen, 'closed':!!previewFullscreen}">
+			<div class="editor__Toolbar editor__Toolbar-black">
 
 				<span class="editor__PostTitle" ng-hide="editTitleActive" ng-click="startTitleEdit()">{{ post.title }}</span>
 				<form class="editor__EditPostTitle" ng-submit="saveTitleEdit()" ng-show="editTitleActive">
@@ -44,7 +44,7 @@
 						</div>
 					</mo-dropdown>
 
-					<button class="button button-clear"><i class="fa fa-expand"></i></button>
+					<button class="button button-clear" ng-click="toggleFullscreen('source')"><i class="fa" ng-class="{'fa-compress': !!sourceFullscreen, 'fa-expand': !sourceFullscreen}"></i></button>
 				</div>
 
 			</div>
@@ -52,6 +52,15 @@
 			<textarea class="editor__SourceInput mousetrap" id="edit-source" ng-model="post.text"></textarea>
 		</div>
 
-		<div class="editor__Preview" ng-bind-html="postPreview"></div>
+		<div class="editor__Preview" ng-class="{'full-screen': !!previewFullscreen, 'closed':!!sourceFullscreen}">
+			<div class="editor__Toolbar">
+				<div></div>
+				<div class="editor__ToolbarInteraction">
+					<button class="button button-clear" ng-click="toggleFullscreen('preview')"><i class="fa" ng-class="{'fa-compress': !!previewFullscreen, 'fa-expand': !previewFullscreen}"></i></button>
+				</div>
+			</div>
+
+			<div class="editor__PreviewContent" ng-bind-html="postPreview"></div>
+		</div>
 	</div>
 </div>

@@ -15,6 +15,8 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.postPreview		= "";
 		$scope.editTitleActive	= false;
 		$scope.savedPostTitle	= null;
+		$scope.sourceFullscreen = false;
+		$scope.previewFullscreen = false;
 
 
 		$timeout(function() {
@@ -97,9 +99,30 @@ angular.module('Moni.BlogEdit.Controllers')
 		};
 
 
-		if(!!_id) {
+		$scope.toggleFullscreen = function(window) {
 
+			switch(window) {
+				case 'preview':
+					if($scope.previewFullscreen) {
+						$scope.previewFullscreen = false;
+					} else {
+						$scope.previewFullscreen = true;
+						$scope.sourceFullscreen = false;
+					}
+					break;
 
+				case 'source':
+					if($scope.sourceFullscreen) {
+						$scope.sourceFullscreen = false;
+					} else {
+						$scope.sourceFullscreen = true;
+						$scope.previewFullscreen = false;
+					}
+					break;
+			}
+
+			if($scope.previewFullscreen) {
+			} else {}
 		}
 
 
