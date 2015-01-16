@@ -40,7 +40,7 @@ angular.module('Moni.BlogEdit.Services')
 
 
 		function Post() {
-			this.title = "untitled";
+			this.title = "new post";
 			this.text = ""
 		}
 
