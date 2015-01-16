@@ -49,8 +49,14 @@ angular
 
 		hljs.initHighlightingOnLoad();
 		marked.setOptions({
-			highlight: function (code) {
-				return hljs.highlightAuto(code).value;
+			highlight: function (code, lang) {
+
+				if(!!lang) {
+					return hljs.highlight(lang, code).value;
+				} else {
+					return hljs.highlightAuto(code).value;
+				}
+
 			},
 			smartypants: true
 		});
