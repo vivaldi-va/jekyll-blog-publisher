@@ -29,6 +29,14 @@ $toolbar-height: 50px;
 	padding: 40px 0 0;
 	box-sizing: border-box;
 
+	transition: 0.1s transform ease-in-out;
+	transform: translate3d(0,0,0);
+
+
+	&.menu-open {
+		transform: translate3d(300px,0,0);
+	}
+
 	&__Toolbar {
 		position: absolute;
 		top: 0;

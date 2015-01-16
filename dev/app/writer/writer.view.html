@@ -1,8 +1,9 @@
-<div ng-include="'components/menu/menu.view.html'"></div>
-<div class="window" ng-class="{'menu-open': !!menu}">
+
+<div class="window">
+	<div ng-include="'components/menu/menu.view.html'"></div>
 	<div ng-include="'views/partials/nav.view.partial.html'"></div>
 
-	<div class="editor">
+	<div class="editor" ng-class="{'menu-open': !!menu}">
 		<div class="editor__Source" ng-class="{'full-screen': !!sourceFullscreen, 'closed':!!previewFullscreen}">
 			<div class="editor__Toolbar editor__Toolbar-black">
 
