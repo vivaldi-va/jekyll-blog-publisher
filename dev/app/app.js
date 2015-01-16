@@ -43,8 +43,16 @@ angular
 			});
 	})
 	.run(function($rootScope, $log) {
-		$rootScope.$watch('socket', function(newVal) {
+		/*$rootScope.$watch('socket', function(newVal) {
 			$log.debug("socket changed: ", newVal);
+		});*/
+
+		hljs.initHighlightingOnLoad();
+		marked.setOptions({
+			highlight: function (code) {
+				return hljs.highlightAuto(code).value;
+			},
+			smartypants: true
 		});
 	})
 	.run(function($rootScope, $location) {
