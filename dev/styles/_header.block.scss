@@ -27,4 +27,14 @@
 	&__buttons {
 		float: right;
 	}
+
+	&__Logo {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: $height;
+		height: $height;
+		margin: 0 0 0 $height*-0.5;
+		background: url('/assets/images/logo.svg') no-repeat center;
+	}
 }
