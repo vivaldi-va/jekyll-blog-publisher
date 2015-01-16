@@ -4,7 +4,7 @@
 
 
 angular.module('Moni.BlogEdit.Services')
-	.factory('PostsService', function($http, $rootScope, $q, $log) {
+	.factory('PostsService', function($http, $rootScope, $q, $log, SocketService) {
 
 		function createPost(post) {
 
@@ -45,9 +45,17 @@ angular.module('Moni.BlogEdit.Services')
 			});
 		}
 
+		function watchNewPosts(cb) {
+			"use strict";
+			SocketService.on('post::create', function(msg) {
+				cb(msg);
+			});
+		}
+
 		return {
 			create: createPost,
 			getPosts: getPosts,
-			getPostById: getPostById
+			getPostById: getPostById,
+			watchNewPosts: watchNewPosts
 		};
 	});

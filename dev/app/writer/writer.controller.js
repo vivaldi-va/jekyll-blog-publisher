@@ -46,7 +46,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		}
 
 
-
 		$scope.startTitleEdit = function() {
 			$scope.savedPostTitle	= angular.copy($scope.post.title);
 			$scope.editTitleActive = true;
@@ -139,10 +138,7 @@ angular.module('Moni.BlogEdit.Controllers')
 					}
 					break;
 			}
-
-			if($scope.previewFullscreen) {
-			} else {}
-		}
+		};
 
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {

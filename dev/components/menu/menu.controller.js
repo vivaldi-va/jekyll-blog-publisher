@@ -9,7 +9,14 @@ angular.module('Moni.BlogEdit')
 		PostsService.getPosts()
 			.then(function(data) {
 				$scope.posts = data.data.data;
+
+				PostsService.watchNewPosts(function(newPost) {
+					$scope.posts.push(newPost);
+				})
+
 			});
+
+
 
 		$scope.getPostLabelColor = function(post) {
 
