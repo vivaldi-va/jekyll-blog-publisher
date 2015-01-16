@@ -5,7 +5,7 @@
 angular.module('Moni.BlogEdit')
 	.config(function ($routeProvider) {
 		$routeProvider
-			.when('/', {
+			.when('/list', {
 				templateUrl: 'app/post-list/post-list.view.html',
 				controller: 'PostListCtrl'
 			});
