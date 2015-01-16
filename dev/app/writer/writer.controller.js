@@ -80,6 +80,27 @@ angular.module('Moni.BlogEdit.Controllers')
 			}
 		});
 
+		Mousetrap.bind('mod+b', function(e) {
+			e.preventDefault();
+
+			$log.debug('ctrl+b');
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, 'bold');
+		});
+
+		Mousetrap.bind('mod+i', function(e) {
+			e.preventDefault();
+
+			$log.debug('ctrl+i');
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, 'italic');
+		});
+
+		Mousetrap.bind('mod+h', function(e) {
+			e.preventDefault();
+
+			$log.debug('ctrl+h');
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, 'header');
+		});
+
 		$scope.formatText = function(action) {
 			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action);
 		};
