@@ -15,6 +15,33 @@
 				</form>
 
 				<div class="editor__ToolbarInteraction">
+					<mo-dropdown>
+						<button class="button button-clear dropdown__Link"><i class="fa fa-question"></i></button>
+						<div class="dropdown dropdown__Target">
+							<div class="dropdown__Block">
+								<span class="dropdown__BlockTitle">markdown syntax</span>
+								<div class="dropdown__BlockItem">
+									<strong>**bold**</strong>(Ctrl/Cmd+b)
+								</div>
+								<div class="dropdown__BlockItem">
+									<em>_italic_</em>(Ctrl/Cmd+i)
+								</div>
+								<div class="dropdown__BlockItem">
+									###sub-header (Ctrl/Cmd+h)
+								</div>
+								<div class="dropdown__BlockItem">
+									* bullet<br>
+									* list
+								</div>
+								<div class="dropdown__BlockItem">
+									> blockquote
+								</div>
+								<div class="dropdown__BlockItem">
+									`code`
+								</div>
+							</div>
+						</div>
+					</mo-dropdown>
 					<mo-dropdown ng-if="!!post.attrs">
 						<button class="button button-clear dropdown__Link"><i class="fa fa-gear"></i></button>
 						<div class="dropdown dropdown__Target">
@@ -22,13 +49,13 @@
 								<span class="dropdown__BlockTitle">status</span>
 								<span class="label label-{{ getPostLabelColor(post) }}">{{ post.attrs.status }}</span>
 							</div>
-							<div class="dropdown__Block">
-								<span class="dropdown__BlockTitle">status</span>
+							<!--<div class="dropdown__Block">
+								<span class="dropdown__BlockTitle">category</span>
 								<select class="input" ng-model="post.category">
 									<option value="blog">blog</option>
 									<option value="press">press</option>
 								</select>
-							</div>
+							</div>-->
 							<div class="dropdown__Footer">
 								<button class="button button-blue" ng-click="publishDraft()" ng-if="post.attrs.status === 'unpublished'">Save draft</button>
 								<button class="button button-green" ng-click="publishLive()" ng-if="user.permissions.can_publish && (post.attrs.status === 'draft' || post.attrs.status === 'edited')">Publish</button>
