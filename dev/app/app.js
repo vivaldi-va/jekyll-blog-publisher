@@ -56,7 +56,6 @@ angular
 				} else {
 					return hljs.highlightAuto(code).value;
 				}
-
 			},
 			smartypants: true
 		});

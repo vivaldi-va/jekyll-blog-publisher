@@ -45,9 +45,9 @@ angular.module('Moni.BlogEdit.Services')
 			});
 		}
 
-		function watchNewPosts(cb) {
+		function syncPostList(cb) {
 			"use strict";
-			SocketService.on('post::create', function(msg) {
+			SocketService.on('postlist::update', function(msg) {
 				cb(msg);
 			});
 		}
@@ -56,6 +56,6 @@ angular.module('Moni.BlogEdit.Services')
 			create: createPost,
 			getPosts: getPosts,
 			getPostById: getPostById,
-			watchNewPosts: watchNewPosts
+			syncPostList: syncPostList
 		};
 	});

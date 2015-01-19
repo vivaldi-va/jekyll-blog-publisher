@@ -10,8 +10,8 @@ angular.module('Moni.BlogEdit')
 			.then(function(data) {
 				$scope.posts = data.data.data;
 
-				PostsService.watchNewPosts(function(newPost) {
-					$scope.posts.push(newPost);
+				PostsService.syncPostList(function(posts) {
+					$scope.posts = posts;
 				})
 
 			});
