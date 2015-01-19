@@ -358,21 +358,20 @@ module.exports = function (grunt) {
 			}
 		},
 		buildcontrol: {
-		options: {
-			dir: 'dist',
-				commit: true,
-				push: true,
-				connectCommits: false,
-				message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-		},
-		heroku: {
 			options: {
-				remote: 'git@heroku.com:moniblogeditor.git',
-				branch: 'master'
+				dir: 'dist',
+					commit: true,
+					push: true,
+					connectCommits: false,
+					message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+			},
+			heroku: {
+				options: {
+					remote: 'git@heroku.com:moniblogeditor.git',
+					branch: 'master'
+				}
 			}
 		}
-	}
-
 	});
 
 	grunt.registerTask('inject', [
