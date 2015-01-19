@@ -187,12 +187,19 @@ angular.module('Moni.BlogEdit.Services')
 		function postLabelColor(post) {
 			var color = 'default';
 
-			if(post.attrs.is_published) {
-				if(post.attrs.is_draft) {
+			switch(post.attrs.status) {
+				case 'draft':
 					color = 'blue';
-				} else {
+					break;
+				case 'published':
 					color = 'green';
-				}
+					break;
+				case 'edited':
+					color = 'yellow';
+					break;
+				default:
+					color = 'default';
+					break;
 			}
 
 			return color;
