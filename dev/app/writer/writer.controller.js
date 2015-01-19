@@ -23,9 +23,7 @@ angular.module('Moni.BlogEdit.Controllers')
 			WriterService.getPost(_id, function(post) {
 				$scope.post = post;
 
-				$scope.getPostLabelColor = function() {
-					return WriterService.postLabelColor(post);
-				};
+
 
 				$scope.getPostLabelText = function() {
 					return WriterService.postLabelText(post);
@@ -34,6 +32,9 @@ angular.module('Moni.BlogEdit.Controllers')
 			});
 		});
 
+		$scope.getPostLabelColor = function(post) {
+			return WriterService.postLabelColor(post);
+		};
 
 		if(!!_id) {
 			WriterService.syncPost(_id, function(post) {
