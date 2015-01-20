@@ -22,9 +22,6 @@ angular.module('Moni.BlogEdit.Controllers')
 		$timeout(function() {
 			WriterService.getPost(_id, function(post) {
 				$scope.post = post;
-
-
-
 				$scope.getPostLabelText = function() {
 					return WriterService.postLabelText(post);
 				};

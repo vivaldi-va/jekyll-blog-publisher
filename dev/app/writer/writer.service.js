@@ -65,9 +65,6 @@ angular.module('Moni.BlogEdit.Services')
 			//id = id || ACTIVE_POST_KEY;
 
 			if(id) {
-				OfflineService.find(id, function(err, post) {
-					cb(post);
-				});
 				$http({
 					url: '/api/post/' + id,
 					method: 'get',
@@ -83,13 +80,6 @@ angular.module('Moni.BlogEdit.Services')
 				});
 
 			}
-
-			OfflineService.find(id, function(err, post) {
-
-				if(!!post) {
-					cb(post);
-				}
-			});
 		}
 
 		function createPost(post, cb) {
@@ -103,12 +93,11 @@ angular.module('Moni.BlogEdit.Services')
 
 		function cachePost(post, cb) {
 			cb = cb || angular.noop;
-			var id = post._id || ACTIVE_POST_KEY;
 
 			$log.debug("post cached in localstorage");
 
 			// save the current post in localstorage under the 'active post' key
-			OfflineService.upsert(id, post, function(err) {
+			OfflineService.upsert(ACTIVE_POST_KEY, post, function(err) {
 				if(err) {
 					$log.error('ERR', err);
 				}
@@ -122,11 +111,10 @@ angular.module('Moni.BlogEdit.Services')
 			$log.debug("Moni.BlogEdit.Services.WriterService.savePost", post._id);
 
 			SocketService.emit('post::save', post);
-
-
-
 		}
 
+
+		// sync post model with updates from sockets
 		function syncPost(postId, cb) {
 			"use strict";
 
