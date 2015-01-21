@@ -11,12 +11,13 @@ angular.module('Moni.BlogEdit.Controllers')
 	.controller('WriterCtrl', function ($rootScope, $scope, $log, $timeout, $interval, $routeParams, WriterService, ModalService) {
 		var _id = $routeParams.id || false;
 		var _autoSaveTimeout;
-		$scope.postSource		= "";
-		$scope.postPreview		= "";
-		$scope.editTitleActive	= false;
-		$scope.savedPostTitle	= null;
-		$scope.sourceFullscreen = false;
-		$scope.previewFullscreen = false;
+		$scope.postSource			= "";
+		$scope.postPreview			= "";
+		$scope.editTitleActive		= false;
+		$scope.savedPostTitle		= null;
+		$scope.sourceFullscreen	= false;
+		$scope.previewFullscreen	= false;
+		$scope.linkFormOpen		= false;
 
 
 		$timeout(function() {
@@ -98,8 +99,10 @@ angular.module('Moni.BlogEdit.Controllers')
 			$scope.post.text = WriterService.addTextFormatting($scope.post.text, 'header');
 		});
 
-		$scope.formatText = function(action) {
-			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action);
+		$scope.formatText = function(action, data) {
+			data = data || null;
+			$scope.post.text = WriterService.addTextFormatting($scope.post.text, action, data);
+			$scope.linkFormOpen = false;
 		};
 
 		$scope.publishDraft = function() {
@@ -138,6 +141,10 @@ angular.module('Moni.BlogEdit.Controllers')
 			}
 		};
 
+
+		$scope.toggleLinkForm = function() {
+			$scope.linkFormOpen = !$scope.linkFormOpen;
+		};
 
 		$scope.$watchCollection('post', function(newValue, oldValue) {
 

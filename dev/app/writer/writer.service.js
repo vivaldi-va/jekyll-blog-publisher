@@ -130,10 +130,12 @@ angular.module('Moni.BlogEdit.Services')
 			});
 		}
 
-		function addTextFormatting(post, type) {
+		function addTextFormatting(post, type, data) {
 			var startPos = EDITOR_ELEMENT.selectionStart;
 			var endPos = EDITOR_ELEMENT.selectionEnd;
 			var selectedText = post.substring(startPos, endPos);
+			data = data || null;
+
 
 			if(selectedText.length === 0) {
 				return post;
@@ -166,6 +168,14 @@ angular.module('Moni.BlogEdit.Services')
 					} else {
 						text = '###' + selectedText;
 					}
+					break;
+				case 'link':
+
+					if(!data) {
+						return;
+					}
+
+					text = '[' + selectedText + '](' + data + ')';
 					break;
 			}
 
