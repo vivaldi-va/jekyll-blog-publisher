@@ -54,6 +54,7 @@ $color-salmon: rgb(239, 108, 111);
 
 // injector
 @import '../components/dropdown/_dropdown.component.scss';
+@import '../components/dropzone/_dropzone.component.scss';
 @import '../components/menu/_menu.component.scss';
 @import '../components/modal/_modal.element.scss';
 @import '../components/notifications/_notification.component.scss';
