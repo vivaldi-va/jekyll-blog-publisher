@@ -150,12 +150,12 @@ module.exports = function (grunt) {
 		},
 		concurrent: {
 			server: [
-				'sass:dist'
+				'sass:watch'
 			],
 
 			// TODO: dist will include image optimization eventually
 			dist: [
-				'sass'
+				'sass:dist'
 			]
 		},
 		// Allow the use of non-minsafe AngularJS files. Automatically makes it
@@ -380,6 +380,7 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('b', [
+		'clean:sever',
 		'inject',
 		'concurrent:server',
 		'newer:copy:fonts',
