@@ -4,23 +4,35 @@
 
 
 angular.module('Moni.BlogEdit')
-	.directive('dropzone', function($log) {
+	.directive('dropzone', function($log, $timeout) {
 		"use strict";
-		return function(scope, element, attrs) {
 
-			var config;
-			var dropzone;
+		return {
+			replace: true,
+			restrict: 'A',
+			scope: {
+				'dropzone': '='
+			},
+			link: function(scope, element, attrs) {
 
-			config = scope[attrs.dropzone];
+				var config;
+				var dropzone;
 
-			dropzone = new Dropzone(element[0], config.options);
+				config = scope.dropzone;
 
-			$log.debug("dropzone: ", dropzone);
+				$timeout(function () {
 
+					$log.debug("dropzone config", scope);
 
-			angular.forEach(config.eventHandlers, function(handler, event) {
-				dropzone.on(event, handler);
-			});
+					dropzone = new Dropzone(element[0], scope.dropzone.options);
 
+					$log.debug("dropzone: ", dropzone);
+
+					angular.forEach(scope.dropzone.eventHandlers, function (handler, event) {
+						dropzone.on(event, handler);
+					});
+
+				});
+			}
 		}
 	});

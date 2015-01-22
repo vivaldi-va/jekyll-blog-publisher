@@ -18,6 +18,8 @@ angular.module('Moni.BlogEdit.Controllers')
 		$scope.sourceFullscreen	= false;
 		$scope.previewFullscreen	= false;
 		$scope.linkFormOpen		= false;
+		$scope.editorLinkString	= "";
+		$scope.editorFormAction	= null;
 
 
 		$timeout(function() {
@@ -142,7 +144,8 @@ angular.module('Moni.BlogEdit.Controllers')
 		};
 
 
-		$scope.toggleLinkForm = function() {
+		$scope.toggleLinkForm = function(action) {
+			$scope.editorFormAction = action;
 			$scope.linkFormOpen = !$scope.linkFormOpen;
 		};
 
@@ -170,6 +173,29 @@ angular.module('Moni.BlogEdit.Controllers')
 				}, 1000);*/
 			}
 		});
+
+
+		$scope.openUploadModal = function() {
+			if(!$scope.post._id) {
+				return;
+			}
+			ModalService.showModal({
+				templateUrl: 'app/writer/upload-modal/upload-modal.view.html',
+				controller: 'UploadModalCtrl',
+				inputs: {
+					post: $scope.post
+				}
+			})
+				.then(function(modal) {
+					modal.close.then(function(response) {
+						$log.debug("modal response", response);
+						if(!!response) {
+							$scope.post = response;
+							$rootScope.$broadcast('event::notification', {type: 'success', message: "image uploaded successfully"});
+						}
+					});
+				});
+		};
 
 		$scope.$on('$destroy', function () { $interval.cancel(_autoSaveTimeout); });
 	});

@@ -177,6 +177,13 @@ angular.module('Moni.BlogEdit.Services')
 
 					text = '[' + selectedText + '](' + data + ')';
 					break;
+				case 'image':
+
+					if(!data) {
+						return;
+					}
+
+					text = '![' + selectedText + '](' + data + ')';
 			}
 
 			return post.slice(0, startPos) + text + post.slice(endPos);

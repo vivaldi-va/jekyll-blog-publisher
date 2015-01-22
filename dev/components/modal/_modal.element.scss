@@ -63,7 +63,9 @@ $width: 380px;
 	&__Body {
 		flex-grow: 1;
 		padding: 1em;
+		overflow-x: hidden;
 		overflow-y: auto;
+
 	}
 
 	&__Footer {

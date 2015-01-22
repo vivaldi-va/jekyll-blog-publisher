@@ -49,6 +49,15 @@
 								<span class="dropdown__BlockTitle">status</span>
 								<span class="label label-{{ getPostLabelColor(post) }}">{{ post.attrs.status }}</span>
 							</div>
+
+							<div class="dropdown__Block">
+								<span class="dropdown__BlockTitle">header image</span>
+								<button class="button button-blue" ng-if="!post.header_image_url" ng-click="openUploadModal()">upload header image</button>
+								<div class="post__HeaderImageThumbWrapper" ng-if="!!post.header_image_url" ng-click="openUploadModal()">
+									<div class="post__HeaderImageThumbCall">upload new image</div>
+									<img class="post__HeaderImageThumb" src="/api/post/image/{{ post.header_image_url }}" alt="post.title">
+								</div>
+							</div>
 							<!--<div class="dropdown__Block">
 								<span class="dropdown__BlockTitle">category</span>
 								<select class="input" ng-model="post.category">
@@ -69,10 +78,11 @@
 								<button class="button button-clear" ng-click="formatText('bold')" title="Bold (Ctrl/Cmd + B)"><i class="fa fa-bold"></i></button>
 								<button class="button button-clear" ng-click="formatText('italic')" title="Italics (Ctrl/Cmd + I)"><i class="fa fa-italic"></i></button>
 								<button class="button button-clear" ng-click="formatText('header')" title="Header (Ctrl/Cmd + H)"><i class="fa fa-header"></i></button>
-								<button class="button button-clear" ng-click="toggleLinkForm()"><i class="fa fa-link"></i></button>
+								<button class="button button-clear" ng-click="toggleLinkForm('link')"><i class="fa fa-link"></i></button>
+								<button class="button button-clear" ng-click="toggleLinkForm('image')"><i class="fa fa-image"></i></button>
 							</div>
 
-							<form ng-show="!!linkFormOpen" ng-submit="formatText('link', editorLinkString)"><input class="input" type="url" ng-model="editorLinkString"></form>
+							<form ng-show="!!linkFormOpen" ng-submit="formatText(editorFormAction, editorLinkString)"><input class="input" type="url" ng-model="editorLinkString"></form>
 
 						</div>
 					</mo-dropdown>

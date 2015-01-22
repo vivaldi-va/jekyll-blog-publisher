@@ -1,0 +1,37 @@
+.post {
+	&__HeaderImageThumbWrapper {
+		position: relative;
+		width: 128px;
+		height: 128px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	&__HeaderImageThumbCall {
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: $color-black-05;
+		color: $color-white;
+		font-size: 1.5em;
+		font-weight: 400;
+		line-height: 1;
+		text-align: center;
+		text-transform: capitalize;
+	}
+	
+	&__HeaderImageThumb {
+		position: relative;
+		max-width: 100%;
+		z-index: 1001;
+
+		transition: 0.25s opacity ease-out;
+		
+		&:hover {
+			opacity: 0.1;
+		}
+	}
+}

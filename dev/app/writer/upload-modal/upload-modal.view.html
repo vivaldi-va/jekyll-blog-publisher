@@ -1,0 +1,13 @@
+<div class="modal__Background">
+	<div class="modal">
+		<div class="modal__Header">upload a header image</div>
+		<div class="modal__Body">
+			<form class="dropzone" dropzone="dropzoneConfig">
+				<input type="hidden" value="{{ post._id }}" name="postid"/>
+			</form>
+		</div>
+		<div class="modal__Footer">
+			<button class="button button-clear" type="button" ng-click="close()">Cancel</button>
+		</div>
+	</div>
+</div>
