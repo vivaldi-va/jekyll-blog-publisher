@@ -47,6 +47,15 @@ before(function (done) {
 					log.debug("removed collection", i);
 				});
 			}
+
+			/*mongoose.connection.collections['fs.files'].remove(function() {
+				log.debug("removed files collection");
+			});
+
+			mongoose.connection.collections['fs.chunks'].remove(function() {
+				log.debug("removed chunks collection");
+			});
+*/
 		})();
 		done();
 	});
