@@ -380,7 +380,7 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('b', [
-		'clean:sever',
+		'clean:server',
 		'inject',
 		'concurrent:server',
 		'newer:copy:fonts',
